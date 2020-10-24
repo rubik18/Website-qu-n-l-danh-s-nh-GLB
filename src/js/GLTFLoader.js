@@ -21,7 +21,7 @@ function init() {
     var controls = new OrbitControls( camera, renderer.domElement);
 
     var loader = new GLTFLoader();
-    loader.load('../../data/Horse.glb', (gltf) => {
+    loader.load('../data/Horse.glb', (gltf) => {
         var obj = gltf.scene;
         obj.scale.set(0.02, 0.02, 0.02);
         scene.add(obj);
