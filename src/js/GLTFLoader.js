@@ -3,6 +3,7 @@ import {GLTFLoader} from '../three/GLTFLoader.js'
 import {OrbitControls} from '../three/OrbitControls.js'
 
 var camera, scene, renderer;
+var mixer, clock;
 
 function init() {
     scene = new THREE.Scene();
@@ -20,10 +21,16 @@ function init() {
 
     var controls = new OrbitControls( camera, renderer.domElement);
 
+    clock = new THREE.Clock();
+
     var loader = new GLTFLoader();
     loader.load('../../data/Horse.glb', (gltf) => {
         var obj = gltf.scene;
         obj.scale.set(0.02, 0.02, 0.02);
+
+        mixer = new THREE.AnimationMixer( gltf.scene );
+        mixer.clipAction( gltf.animations[ 0 ] ).play();
+
         scene.add(obj);
     })
 
@@ -41,6 +48,7 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame( animate );
+    if ( mixer ) mixer.update( clock.getDelta() );
     renderer.render( scene, camera );
 }
 
