@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 03:06 PM
+-- Generation Time: Oct 27, 2020 at 09:19 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -31,12 +31,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `model3d` (
   `id` int(15) NOT NULL,
   `scale` float DEFAULT NULL,
-  `animations` int(15) NOT NULL,
+  `animations` int(15) DEFAULT NULL,
   `name` varchar(150) DEFAULT NULL,
   `glbUri` varchar(150) DEFAULT NULL,
   `thumbnaillmageUri` varchar(150) DEFAULT NULL,
   `category` varchar(150) DEFAULT NULL,
-  `width` int(11) NOT NULL,
+  `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
   `depth` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -47,20 +47,10 @@ CREATE TABLE `model3d` (
 
 INSERT INTO `model3d` (`id`, `scale`, `animations`, `name`, `glbUri`, `thumbnaillmageUri`, `category`, `width`, `height`, `depth`) VALUES
 (1, 0.001, 1, 'Cửa mở quay TOPAL Prima mở quay', 'topalprimamoquayanim.glb', 'topalprimamoquayanim.jpg', NULL, 0, 0, 0),
-(7, 0.003, 8, 'Váº£i bay cjakc', 'Horse.glb', 'Test - Google Chrome 2020-10-20 7_11_06 PM.png', NULL, 20, 20, 20);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `model_animation`
---
-
-CREATE TABLE `model_animation` (
-  `id` int(15) NOT NULL,
-  `name` varchar(150) DEFAULT NULL,
-  `speed` float DEFAULT NULL,
-  `selected` bit(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(7, 0.003, 8, 'Váº£i bay cjakc', '', 'Test - Google Chrome 2020-10-20 7_11_06 PM.png', NULL, 20, 20, 20),
+(8, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/upload/Horse.glb', NULL, NULL, NULL, NULL, NULL),
+(14, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/uploadHorse.glb', NULL, NULL, NULL, NULL, NULL),
+(15, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/uploadinstagram.jpg', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -74,12 +64,6 @@ ALTER TABLE `model3d`
   ADD KEY `animations` (`animations`);
 
 --
--- Indexes for table `model_animation`
---
-ALTER TABLE `model_animation`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -87,23 +71,7 @@ ALTER TABLE `model_animation`
 -- AUTO_INCREMENT for table `model3d`
 --
 ALTER TABLE `model3d`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `model_animation`
---
-ALTER TABLE `model_animation`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `model_animation`
---
-ALTER TABLE `model_animation`
-  ADD CONSTRAINT `model_animation_ibfk_1` FOREIGN KEY (`id`) REFERENCES `model3d` (`animations`);
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
