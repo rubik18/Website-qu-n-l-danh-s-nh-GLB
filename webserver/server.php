@@ -37,21 +37,9 @@
  			<th>height</th>
  			<th>depth</th>
  			<th></th>
- 			<th></th>
  		</thead>
  		<tbody>
 			<?php
-			// $servername = "127.0.0.1";
-			// $username = "root";
-			// $password = "";
-			// $database = "model3d";
-
-			// // Create connection
-			// $conn = mysqli_connect($servername, $username, $password,$database);
-			// if (!$conn) {
-			//   die("Connection failed: " . mysqli_connect_error());
-			// }
-			// echo "Connected successfully<br>";
 			require'connectSQL.php';
 			$sql = "SELECT * FROM `model3d`";
 			
@@ -76,8 +64,7 @@
 				<td><?php echo$user_info['width']; ?></td>
 				<td><?php echo$user_info['height']; ?></td>
 				<td><?php echo$user_info['depth']; ?></td>
-				<td><a href='update.php?id=<?php echo $id;?>'>Update</a></td>
-				<td><a href=''>Xóa</a></td>
+				<td><a href='delete.php?id=<?php echo $id;?>'>Delete</a></td>
 			</tr>
 			<?php 
 				}
@@ -89,7 +76,7 @@
 
  	</table>
  	<br>
- 		<center><button><a href='update.php?id=<?php echo $id;?>'>Upload file glb</a></button></center>
+ 		<center><button><a href='form_upload.php'>Upload file glb</a></button></center>
 			
 			
 </body>
