@@ -10,7 +10,7 @@ function init() {
     scene.background = new THREE.Color('white');
     
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    camera.position.z = 10
+    camera.position.set(5, 5, 5);
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -23,12 +23,27 @@ function init() {
 
     clock = new THREE.Clock();
 
-    var loader = new GLTFLoader();
-    loader.load('../../data/Horse.glb', (gltf) => {
-        var obj = gltf.scene;
-        obj.scale.set(0.02, 0.02, 0.02);
+    var textureLoader = new THREE.TextureLoader();
+    var text = textureLoader.load('../../data/12.jpg');
+    // map.encoding = THREE.sRGBEncoding;
+    text.flipY = false;
 
-        mixer = new THREE.AnimationMixer( gltf.scene );
+    var loader = new GLTFLoader();
+    loader.load('../../data/test1.1.glb', (gltf) => {
+        var obj = gltf.scene;
+        // obj.scale.set(0.02, 0.02, 0.02);
+        obj.scale.set(0.5, 0.5, 0.5)
+
+        obj.traverse((o) => {
+            if(o.isMesh) {
+                o.material.map = text;
+            }
+        })
+
+        console.log(gltf)
+        console.log(obj)
+
+        mixer = new THREE.AnimationMixer( obj );
         mixer.clipAction( gltf.animations[ 0 ] ).play();
 
         scene.add(obj);
@@ -48,7 +63,11 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame( animate );
-    if ( mixer ) mixer.update( clock.getDelta() );
+
+    if ( mixer ) {
+        mixer.update( clock.getDelta() );
+    }
+
     renderer.render( scene, camera );
 }
 
