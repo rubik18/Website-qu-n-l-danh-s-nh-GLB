@@ -16,7 +16,7 @@ $file_tmp =$_FILES['glb']['tmp_name'];
 //tạo đường dẫn lưu file trên host:
 $path ="upload/".$file_glb;
 // var_dump($path);die();
-$link ="/SEO4-Nhom14.2/webserver/upload".$file_glb;
+$link ="/SEO4-Nhom14.2/webserver/upload/".$file_glb;
 //upload nội dung file từ đường dẫn tạm vào đường dẫn vừa tạo:
 move_uploaded_file($file_tmp,$path);
   if (isset($_FILES['glb'])&&$_FILES['glb']["name"]!=null) {
