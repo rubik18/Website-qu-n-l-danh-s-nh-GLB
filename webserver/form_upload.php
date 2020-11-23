@@ -24,7 +24,7 @@
 		</style>
 	</head>
 	<body>
-<h1>Nội dung</h1>
+<h1>Upload File</h1>
 	<div id ="noidung" >
 		<form role="form" action="add.php" method = "post" enctype="multipart/form-data" >
 			
