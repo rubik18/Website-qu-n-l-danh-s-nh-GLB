@@ -1,7 +1,4 @@
-# 
-```php
- Website quản lý danh sánh GLB
- ```
+# ``` Website quản lý danh sánh GLB ```
 ------------
 ### SEO4-Nhom14.2
 
