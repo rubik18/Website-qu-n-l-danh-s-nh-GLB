@@ -3,7 +3,9 @@
 **My name**
 - thích gì nào
     -đây nhé
+    
 -bảng dữ liệu:
+
 |  họ tên | Tuổi   |giới tính|
 |---------|--------|---------|
 |phuong|20|nữ|
