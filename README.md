@@ -1,4 +1,7 @@
-# Website quản lý danh sánh GLB
+# 
+```php
+ Website quản lý danh sánh GLB
+ ```
 ------------
 ### SEO4-Nhom14.2
 
@@ -14,7 +17,7 @@
     * Bạn có thể upload một hay nhiều file 3D (file.*glb*) lên Website của chúng tôi
     * Bạn có thể xem chi tiết từng file 3D như :Mã sản phẩm,tên sản phẩm, kích thước, danh sách animation, tốc độ animation...
     * Bạn có thể xóa 1 hay nhiều file.*glb* khi có nhu cầu.
-    
+
 ## Công nghệ 
 
 1. **Js** và thư viện **Three.js**
@@ -25,10 +28,10 @@
 
 ## Tác giả
 
-1.[Hoàng Thị Mai](https://github.com/kaioz11)
-2.[Vũ Thị Phương](https://github.com/phuongvu0909)
-3.[Đinh Thị Thắm](https://github.com/rubik18)
-4.[Trần Thị Thúy Nga](https://github.com/thuynga2705)
+1. [Hoàng Thị Mai](https://github.com/kaioz11)
+2. [Vũ Thị Phương](https://github.com/phuongvu0909)
+3. [Đinh Thị Thắm](https://github.com/rubik18)
+4. [Trần Thị Thúy Nga](https://github.com/thuynga2705)
 
 ## Tài liệu tham khảo
 
