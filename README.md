@@ -15,13 +15,12 @@
     * Bạn có thể xem chi tiết từng file 3D như :Mã sản phẩm,tên sản phẩm, kích thước, danh sách animation, tốc độ animation...
     * Bạn có thể xóa 1 hay nhiều file.*glb* khi có nhu cầu.
 
-## Công nghệ 
+## Công nghệ - Công cụ - Thư viện
 
-1. **Js** và thư viện **Three.js**
-    Dùng js để loader file **.GLB** lấy từ thư viện **Three.js** lên server:
-        - Sau khi đã có được các file .GLB chúng tôi đã tạo ra giao diện để cho file GLb khi load lên có thể hiển thị, sau đó dùng **js** để viết hàm load đưa file .GLb lên server
+1. Thư viện **Three.js** 
+    -Dùng thư viện **Three.js** của **JavaScript** để tạo và hiển thị hoạt hình đồ họa 3D
 2. **HTML,CSS** và **PHP**
-    - Thiết kế giao diện website bằng **HTML và CSS**. Sau đó sử dụng **PHP** để tạo ra các controler điểu khiển tương tác giữa model và view, đưa file được up lên và Database
+    - Thiết kế giao diện website bằng **HTML và CSS**. Sau đó sử dụng **PHP** kết nối dữ liệu vào cơ sở dữ liệu.
 
 ## Tác giả
 
