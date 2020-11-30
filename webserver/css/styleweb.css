@@ -68,11 +68,27 @@ button{
     text-align:center;
     padding-top: 10px;
 }
-/*###..footer CSS.####*/
-.footer-area {
-    background: #007dc5;
-    padding: 50px 0 0px 0px !important;
-    position: relative;
-    z-index: 1;
-    color: #fff;
+#bg-col{
+    background-color: #c8d2dc;
+
+}
+#navie {
+    color: #9e3807;
+}
+#nav {
+    color: #000000;
+}
+#navi {
+    color: #60458c;
+}
+#bg-box{
+    background-color: #352384;
+}
+.bg-bo {
+    background-color: #66b3ff;
+    padding: 10px;
+    margin: 20px 0px 0px 20px ;
+}
+.a-box{
+    color: black;
 }

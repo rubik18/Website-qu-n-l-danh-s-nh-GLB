@@ -1,6 +1,7 @@
-import *as THREE from '../three/three.module.js'
-import {GLTFLoader} from '../three/GLTFLoader.js'
-import {OrbitControls} from '../three/OrbitControls.js'
+
+import *as THREE from '/SEO4-Nhom14.2/src/three/three.module.js'
+import {GLTFLoader} from '/SEO4-Nhom14.2/src/three/GLTFLoader.js'
+import {OrbitControls} from '/SEO4-Nhom14.2/src/three/OrbitControls.js'
 
 var camera, scene, renderer;
 var mixer, clock;
@@ -8,8 +9,8 @@ var mixer, clock;
 function init() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color('white');
-    
-    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+    camera = new THREE.PerspectiveCamera( 75, (window.innerWidth) / (window.innerHeight), 0.1, 1000 );
     camera.position.set(5, 5, 5);
 
     renderer = new THREE.WebGLRenderer();
@@ -29,10 +30,10 @@ function init() {
     text.flipY = false;
 
     var loader = new GLTFLoader();
-    loader.load('../../data/Flamingo.glb', (gltf) => {
+    loader.load('/SEO4-Nhom14.2/data/Horse.glb', (gltf) => {
         var obj = gltf.scene;
         obj.scale.set(0.02, 0.02, 0.02);
-        // obj.scale.set(0.5, 0.5, 0.5)
+        // obj.scale.set(0.05, 0.05, 0.05)
 
         obj.traverse((o) => {
             if(o.isMesh) {
@@ -53,10 +54,10 @@ function init() {
 }
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = (window.innerWidth) / (window.innerHeight);
     camera.updateProjectionMatrix();
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( window.innerWidth, window.innerHeight);
 
     animate();
 }

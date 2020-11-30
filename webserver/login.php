@@ -46,7 +46,7 @@
     <div class="col-md-6" id="khung">
         <form action="">
             <div class="col-sm-12" id="signin">
-                Welcom to MIM
+                Welcom to website GLB
 
             </div>
             <div class="col-sm-12" >
