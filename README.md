@@ -1,7 +1,7 @@
 # ``` Website quản lý danh sánh GLB ```
 ------------
 ### SEO4-Nhom14.2
-![php-version][php_version]
+![javascript][js]
 
 ## Giới thiệu
 
