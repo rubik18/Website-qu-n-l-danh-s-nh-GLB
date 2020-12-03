@@ -1,6 +1,7 @@
 # ``` Website quản lý danh sánh GLB ```
 ------------
 ### SEO4-Nhom14.2
+![php-version][php_version]
 
 ## Giới thiệu
 
@@ -18,7 +19,7 @@
 ## Công nghệ - Công cụ - Thư viện
 
 1. Thư viện **Three.js** 
-    -Dùng thư viện **Three.js** của **JavaScript** để tạo và hiển thị hoạt hình đồ họa 3D
+    - Dùng thư viện **Three.js** của **JavaScript** để tạo và hiển thị hoạt hình đồ họa 3D
 2. **HTML,CSS** và **PHP**
     - Thiết kế giao diện website bằng **HTML và CSS**. Sau đó sử dụng **PHP** kết nối dữ liệu vào cơ sở dữ liệu.
 
