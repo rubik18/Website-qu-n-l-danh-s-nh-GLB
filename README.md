@@ -1,7 +1,7 @@
 # ``` Website quản lý danh sánh GLB ```
 ------------
 ### SEO4-Nhom14.2
-![javascript][js]
+[![npm version](https://badge.fury.io/js/webserver.svg)](https://badge.fury.io/js/webserver)
 
 ## Giới thiệu
 
