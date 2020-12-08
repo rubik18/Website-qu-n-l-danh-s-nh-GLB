@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>website GLB</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="icon" href="http://hus.vnu.edu.vn/favicon.ico" type="image/ico" sizes="16x16">
+        <link rel="stylesheet" type="text/css" href="/SEO4-Nhom14.2/webserver/css/styleweb.css">
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css">
        <style type="text/css">
        	table {
 			  font-family: arial, sans-serif;
@@ -22,6 +32,42 @@
 			}
        </style>
     </head>
+    <header class="sticky-top">
+
+
+        <!--    class="fixed-top"-->
+        <!--    <div >...</div>-->
+        <div >
+            <nav class="navbar navbar-expand-lg navbar-ligh bg-li " >
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="web.php" ><i class='fas fa-house-user' ></i>  &ensp;|<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="form_upload.php">Upload file &ensp;|</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="server.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link pd-0 " href="login.php" tabindex="-1" aria-disabled="true">Logout  &ensp;|</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Help</a>
+                        </li>
+                    </ul>
+                    <!-- -->
+                    <p class="nav-link" id="day">SE04_Nhóm 14.2 -  <?php echo date("l, M d, Y")?>&emsp;</p>
+                </div>
+            </nav>
+        </div>
+    </header>
     <body>
 
     	<table border="2">

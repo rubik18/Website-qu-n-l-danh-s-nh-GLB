@@ -11,26 +11,17 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:mai" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:interface" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e347f287-e380-47c0-9ea3-a69afdded9c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webserver/GLTFLoaderBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webserver/box.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SEO4-Nhom14.2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/GLTFLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/GLTFLoader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/connectSQL.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/connectSQL.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/css/styleweb.css" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/css/styleweb.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webserver/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/form_upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/form_upload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/server.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/server.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webserver/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +85,9 @@
       <workItem from="1606138979744" duration="7865000" />
       <workItem from="1606211766086" duration="3161000" />
       <workItem from="1606445402272" duration="1217000" />
-      <workItem from="1606744644675" duration="10365000" />
+      <workItem from="1606744644675" duration="11098000" />
+      <workItem from="1607260157645" duration="80000" />
+      <workItem from="1607418885019" duration="13172000" />
     </task>
     <servers />
   </component>
@@ -112,7 +105,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="mai" />
+                        <option value="interface" />
                       </list>
                     </value>
                   </entry>
@@ -138,9 +131,13 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="518" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1606144552789" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606311267370">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1606756118744">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606311267370" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1606756118744" />
+    <state x="390" y="0" width="585" height="728" key="find.popup" timestamp="1607419636568">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" width="585" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1607419636568" />
   </component>
 </project>
