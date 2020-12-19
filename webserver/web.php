@@ -4,15 +4,20 @@
     <title>website GLB</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link rel="icon" href="http://hus.vnu.edu.vn/favicon.ico" type="image/ico" sizes="16x16">
+
+    <link rel="stylesheet" href="/SEO4-Nhom14.2/webserver/css/bootstrap.min.css">
+
+    <script src="/SEO4-Nhom14.2/webserver/js/jquery.min.js"></script>
+    <script src="/SEO4-Nhom14.2/webserver/js/popper.min.js"></script>
+    <script src="/SEO4-Nhom14.2/webserver/js/bootstrap.min.js"></script>
+    <script src="/SEO4-Nhom14.2/webserver/js/code.jquery.js"></script>
+    <link rel="icon" href="/SEO4-Nhom14.2/webserver/upload/favicon.ico" type="image/ico" sizes="16x16">
     <link rel="stylesheet" type="text/css" href="/SEO4-Nhom14.2/webserver/css/styleweb.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css">
+
+    <script src='/SEO4-Nhom14.2/webserver/js/kit.fontawesome.js'></script>
+
+    <link rel="stylesheet" href="/SEO4-Nhom14.2/webserver/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/SEO4-Nhom14.2/webserver/css/adminlte.min.css">
 </head>
 <header class="sticky-top">
 
@@ -31,17 +36,17 @@
                         <a class="nav-link" href="form_upload.php">Upload file &ensp;|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="server.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
+                        <a class="nav-link " href="listFile.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
+                        <a class="nav-link " href="../Index.html" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link pd-0 " href="login.php" tabindex="-1" aria-disabled="true">Logout  &ensp;|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Help</a>
+                        <a class="nav-link " href="javascript:void(0);" onclick="myFunction()" tabindex="-1" aria-disabled="true">Help</a>
                     </li>
                 </ul>
                 <!-- -->
@@ -50,6 +55,11 @@
         </nav>
     </div>
 </header>
+<script>
+    function myFunction() {
+        alert("Website quản lý danh sách GLB \n\n Tác giả: \n SEO4_Nhom14.2 \n\n Đinh Thị Thắm\n Hoàng Thị Mai\n Vũ Thị Phương\n Trần Thúy Nga");
+    }
+</script>
 <body >
 <?php
 require'connectSQL.php';
@@ -104,52 +114,18 @@ if (!$result) {
                                     {
                                     $id = $user_infoi['id'];?>
                 <!-- January 2020 -->
-                <a href="" target="_blank" rel="noopener"><img src="<?php echo $user_infoi['thumbnaillmageUri'];?>"style="width:100%;height:150px;" loading="lazy"></a>
+                <a href="" target="_blank" rel="noopener"><img src="<?php if ($user_infoi['thumbnaillmageUri']==''){
+                    echo "/SEO4-Nhom14.2/webserver/upload/three_js.png"; }else
+                    echo $user_infoi['thumbnaillmageUri'];?>"style="width:100%;height:150px;" loading="lazy"></a>
                 <?php
                                     }
                                     }
                                     mysqli_close($conn);
                                     ?>
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/hello-webxr.png" style="width:100%;height:150px;"loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/monsieurnoss.png" style="width:100%;height:150px;"loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/PrimarylonDrive.gif"style="width:100%;height:150px;" loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/dvein.png"style="width:100%;height:150px;" loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/kentatoshikura.png" style="width:100%;height:150px;"loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/PrimarylonDrive.gif" style="width:100%;height:150px;" loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/richardmattka.png"style="width:100%;height:150px;" loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/bruno-simon.png" style="width:100%;height:150px;"loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="https://mythuatms.com/image/data/HUONG%20LY/MY%20THUAT%20CN/chuyen%20dong%20va%20dinh%20huong%20trong%20TK/dinh-huong-trong-thiet-ke-6.jpg" style="width:100%;height:150px;" loading="lazy"></a>-->
-<!--                <a href="" target="_blank" rel="noopener"><img src="/Three.js - Thư viện JavaScript 3D_files/1955horsebit.png" style="width:100%;height:150px;"loading="lazy"></a>-->
+
 
             </div>
-<!--                <div class="row">-->
-<!--                    --><?php
-//                    $sqli = "SELECT * FROM `model3d`";
-//
-////                    $conn->set_charset("utf8");
-//                    if($resulti = $conn->query($sqli) )
-//                    {
-//                    while($user_infoi = mysqli_fetch_array($resulti))
-//                    {
-//                    $id = $user_infoi['id'];?>
-<!--                    <div class="col-12 col-md-6 col-lg-3 magazine-item bg-bo" >-->
-<!--                        <a href="" class="a-box">-->
-<!--                        <center>--><?php //echo $user_infoi['name'];?><!--</center>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    --><?php
-//                    }
-//                    }
-//                    mysqli_close($conn);
-//                    ?>
-<!---->
-<!--        <!--            .......-->-->
-<!--                    -->
-<!---->
-<!--                </div>-->
-
-
-        </div>
+</div>
     </div></div>
 
 

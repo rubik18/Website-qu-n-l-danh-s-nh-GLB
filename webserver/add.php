@@ -49,7 +49,7 @@ else {
   $_SESSION['glb'] = $glb;
 	  	$sql = "INSERT INTO `model3d` (`id`, `scale`, `animations`, `name`, `glbUri`, `thumbnaillmageUri`, `category`, `width`, `height`, `depth`) VALUES (NULL, NULL, NULL, '$file_glb', '$glb', '$img', NULL, NULL, NULL, NULL);";
 		mysqli_query($conn,$sql) or die("Thêm dữ liệu thất bại !");
-		header("location: server.php");
+		header("location: listFile.php");
   	  		
   	  
  ?>

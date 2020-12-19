@@ -1,42 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <title>website GLB</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <link rel="icon" href="http://hus.vnu.edu.vn/favicon.ico" type="image/ico" sizes="16x16">
+        <link rel="stylesheet" href="/SEO4-Nhom14.2/webserver/css/bootstrap.min.css">
+
+        <script src="/SEO4-Nhom14.2/webserver/js/jquery.min.js"></script>
+        <script src="/SEO4-Nhom14.2/webserver/js/popper.min.js"></script>
+        <script src="/SEO4-Nhom14.2/webserver/js/bootstrap.min.js"></script>
+        <script src="/SEO4-Nhom14.2/webserver/js/code.jquery.js"></script>
+        <link rel="icon" href="/SEO4-Nhom14.2/webserver/upload/favicon.ico" type="image/ico" sizes="16x16">
         <link rel="stylesheet" type="text/css" href="/SEO4-Nhom14.2/webserver/css/styleweb.css">
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css">
-       <style type="text/css">
-       	table {
-			  font-family: arial, sans-serif;
-			  border-collapse: collapse;
-			  width: 70%;
-			  margin: auto;
-			}
 
-			td, th {
-			  border: 2px solid #dddddd;
-			  text-align: left;
-			  padding: 8px;
-			}
+        <script src='/SEO4-Nhom14.2/webserver/js/kit.fontawesome.js'></script>
 
-			tr:nth-child(even) {
-			  background-color: #dddddd;
-			}
-       </style>
+        <link rel="stylesheet" href="/SEO4-Nhom14.2/webserver/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/SEO4-Nhom14.2/webserver/css/adminlte.min.css">
+
     </head>
     <header class="sticky-top">
 
 
-        <!--    class="fixed-top"-->
-        <!--    <div >...</div>-->
+
         <div >
             <nav class="navbar navbar-expand-lg navbar-ligh bg-li " >
 
@@ -49,7 +35,7 @@
                             <a class="nav-link" href="form_upload.php">Upload file &ensp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="server.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
+                            <a class="nav-link " href="listFile.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
@@ -59,7 +45,7 @@
                             <a class="nav-link pd-0 " href="login.php" tabindex="-1" aria-disabled="true">Logout  &ensp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Help</a>
+                            <a class="nav-link " href="javascript:void(0);" onclick="myFunction()" tabindex="-1" aria-disabled="true">Help</a>
                         </li>
                     </ul>
                     <!-- -->
@@ -68,9 +54,15 @@
             </nav>
         </div>
     </header>
+    <script>
+        function myFunction() {
+            alert("Website quản lý danh sách GLB \n\n Tác giả: \n SEO4_Nhom14.2 \n\n Đinh Thị Thắm\n Hoàng Thị Mai\n Vũ Thị Phương\n Trần Thúy Nga");
+        }
+    </script>
     <body>
-
-    	<table border="2">
+        <div id="container">
+            <div> <h3 style="color: #9f1447"> <center>Danh sách file GLB</center></h3></div>
+    	    <table border="2" id ="table">
  		<thead>
  			<th>Id</th>
  			<th>Scale</th>
@@ -110,7 +102,7 @@
 				<td><?php echo$user_info['width']; ?></td>
 				<td><?php echo$user_info['height']; ?></td>
 				<td><?php echo$user_info['depth']; ?></td>
-				<td><a href='delete.php?id=<?php echo $id;?>'>Delete</a></td>
+				<td><a href='delete.php?id=<?php echo $id;?>' id = 'pink'>Delete</a></td>
 			</tr>
 			<?php 
 				}
@@ -121,8 +113,12 @@
  		
 
  	</table>
- 	<br>
- 		<center><button><a href='form_upload.php'>Upload file glb</a></button></center>
+            <br>
+            <center><button id="up"><h5><a href='form_upload.php'>Upload file glb</a></h5></button></center>
+        </div>
+
+
+
 			
 			
 </body>
