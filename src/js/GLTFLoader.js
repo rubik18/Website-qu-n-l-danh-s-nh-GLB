@@ -5,6 +5,7 @@ import {GUI} from '../three/dat.gui.module.js';
 
 var camera, scene, renderer;
 var mixer, clock;
+var  actions;
 
 let ambientLight, light;
 
@@ -14,6 +15,8 @@ let wireMaterial, flatMaterial, gouraudMaterial;
 
 const diffuseColor = new THREE.Color();
 const specularColor = new THREE.Color();
+
+let check1 = false;
 
 function init() {
     scene = new THREE.Scene();
@@ -53,10 +56,10 @@ function init() {
     text.flipY = false;
 
     var loader = new GLTFLoader();
-    loader.load('../../data/Horse.glb', (gltf) => {
+    loader.load('../../data/test1.1.glb', (gltf) => {
         var obj = gltf.scene;
-        obj.scale.set(0.02, 0.02, 0.02);
-        // obj.scale.set(0.5, 0.5, 0.5)
+        // obj.scale.set(0.02, 0.02, 0.02);
+        obj.scale.set(0.5, 0.5, 0.5)
 
         obj.traverse((o) => {
             if(o.isMesh) {
@@ -65,10 +68,12 @@ function init() {
         })
 
         setupGui();
-
+        // createPanel();
 
         mixer = new THREE.AnimationMixer( obj );
-        mixer.clipAction( gltf.animations[ 0 ] ).play();
+        // mixer.clipAction( gltf.animations[ 0 ] ).play();
+        actions = mixer.clipAction( gltf.animations[ 0 ] );
+        actions.play();
 
         scene.add(obj);
     })
@@ -92,15 +97,11 @@ function setupGui() {
         lsaturation: 0.01,
         llightness: 1.0,
 
-        lx: 0.32,
+        lx: 0.5,
         ly: 0.39,
         lz: 0.7,
-        newTess: 15,
-        bottom: true,
-        lid: true,
-        body: true,
-        fitLid: false,
-        nonblinn: false,
+
+        'pause/continue': pauseContinue,
     };
 
     let h;
@@ -132,6 +133,37 @@ function setupGui() {
     h.add( effectController, "ly", - 1.0, 1.0, 0.025 ).name( "y" ).onChange( render );
     h.add( effectController, "lz", - 1.0, 1.0, 0.025 ).name( "z" ).onChange( render );
 
+    h = gui.addFolder('Pausing/Continue');
+    
+    h.add(effectController, ('pause/continue'));
+
+}
+
+function pauseContinue() {
+
+    if (check1) {
+        check1 = false;
+        actions.enabled = true;
+        unPauseAllActions();
+    }
+    else {
+        check1 = true;
+        pauseAllActions();
+    }
+
+    console.log(check1)
+}
+
+function pauseAllActions() {
+
+    actions.paused = true;
+
+}
+
+function unPauseAllActions() {
+
+    actions.paused = false;
+   
 }
 
 function onWindowResize() {
@@ -145,21 +177,11 @@ function onWindowResize() {
 
 function render() {
     
-    // diffuseColor.multiplyScalar( effectController.kd );
-    flatMaterial.color.copy( diffuseColor );
-    gouraudMaterial.color.copy( diffuseColor );
-    
-
-    // specularColor.multiplyScalar( effectController.ks );
-
     // Ambient's actually controlled by the light for this demo
     ambientLight.color.setHSL( effectController.hue, effectController.saturation, effectController.lightness * effectController.ka );
 
     light.position.set( effectController.lx, effectController.ly, effectController.lz );
     light.color.setHSL( effectController.lhue, effectController.lsaturation, effectController.llightness );
-
-
-    renderer.render(scene, camera);
 }
 
 function animate() {
@@ -168,8 +190,8 @@ function animate() {
     if ( mixer ) {
         mixer.update( clock.getDelta() );
     }
-
-    render();
+    
+    renderer.render(scene, camera);
 }
 
 init()
