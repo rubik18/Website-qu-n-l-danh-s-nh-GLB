@@ -79,7 +79,7 @@ function init() {
     text.flipY = false;
 
     var loader = new GLTFLoader();
-    loader.load('../../data/test1.1.glb', (gltf) => {
+    loader.load('../../data/Flamingo.glb', (gltf) => {
         var obj = gltf.scene;
         centralize(obj);
 

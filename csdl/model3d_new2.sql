@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 09:19 AM
+-- Generation Time: Dec 19, 2020 at 03:10 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -46,11 +46,13 @@ CREATE TABLE `model3d` (
 --
 
 INSERT INTO `model3d` (`id`, `scale`, `animations`, `name`, `glbUri`, `thumbnaillmageUri`, `category`, `width`, `height`, `depth`) VALUES
-(1, 0.001, 1, 'Cửa mở quay TOPAL Prima mở quay', 'topalprimamoquayanim.glb', 'topalprimamoquayanim.jpg', NULL, 0, 0, 0),
-(7, 0.003, 8, 'Váº£i bay cjakc', '', 'Test - Google Chrome 2020-10-20 7_11_06 PM.png', NULL, 20, 20, 20),
-(8, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/upload/Horse.glb', NULL, NULL, NULL, NULL, NULL),
-(14, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/uploadHorse.glb', NULL, NULL, NULL, NULL, NULL),
-(15, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/uploadinstagram.jpg', NULL, NULL, NULL, NULL, NULL);
+(45, NULL, NULL, 'PrimaryIonDrive.glb', '/SEO4-Nhom14.2/webserver/upload/PrimaryIonDrive.glb', '/SEO4-Nhom14.2/webserver/upload/img/PrimarylonDrive.gif', NULL, NULL, NULL, NULL),
+(47, NULL, NULL, 'Parrot.glb', '/SEO4-Nhom14.2/webserver/upload/Parrot.glb', '/SEO4-Nhom14.2/webserver/upload/img/aviator.png', NULL, NULL, NULL, NULL),
+(48, NULL, NULL, 'ferrari.glb', '/SEO4-Nhom14.2/webserver/upload/ferrari.glb', '/SEO4-Nhom14.2/webserver/upload/img/anagram.png', NULL, NULL, NULL, NULL),
+(50, NULL, NULL, 'Flamingo.glb', '/SEO4-Nhom14.2/webserver/upload/Flamingo.glb', '/SEO4-Nhom14.2/webserver/upload/img/analysis.png', NULL, NULL, NULL, NULL),
+(51, NULL, NULL, 'SittingBox.glb', '/SEO4-Nhom14.2/webserver/upload/SittingBox.glb', '/SEO4-Nhom14.2/webserver/upload/img/carvisualizer.jpg', NULL, NULL, NULL, NULL),
+(52, NULL, NULL, 'Soldier.glb', '/SEO4-Nhom14.2/webserver/upload/Soldier.glb', '/SEO4-Nhom14.2/webserver/upload/img/3dc.png', NULL, NULL, NULL, NULL),
+(54, NULL, NULL, 'Xbot.glb', '/SEO4-Nhom14.2/webserver/upload/Xbot.glb', '/SEO4-Nhom14.2/webserver/upload/img/cabbibo.png', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -71,7 +73,7 @@ ALTER TABLE `model3d`
 -- AUTO_INCREMENT for table `model3d`
 --
 ALTER TABLE `model3d`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

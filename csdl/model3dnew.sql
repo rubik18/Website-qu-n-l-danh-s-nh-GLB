@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 09:19 AM
+-- Generation Time: Nov 30, 2020 at 05:58 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -46,11 +46,25 @@ CREATE TABLE `model3d` (
 --
 
 INSERT INTO `model3d` (`id`, `scale`, `animations`, `name`, `glbUri`, `thumbnaillmageUri`, `category`, `width`, `height`, `depth`) VALUES
-(1, 0.001, 1, 'Cửa mở quay TOPAL Prima mở quay', 'topalprimamoquayanim.glb', 'topalprimamoquayanim.jpg', NULL, 0, 0, 0),
-(7, 0.003, 8, 'Váº£i bay cjakc', '', 'Test - Google Chrome 2020-10-20 7_11_06 PM.png', NULL, 20, 20, 20),
-(8, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/upload/Horse.glb', NULL, NULL, NULL, NULL, NULL),
-(14, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/uploadHorse.glb', NULL, NULL, NULL, NULL, NULL),
-(15, NULL, NULL, NULL, '/SEO4-Nhom14.2/webserver/uploadinstagram.jpg', NULL, NULL, NULL, NULL, NULL);
+(21, NULL, NULL, 'Flamingo.glb', '/SEO4-Nhom14.2/webserver/upload/Flamingo.glb', NULL, NULL, NULL, NULL, NULL),
+(22, NULL, NULL, 'ferrari.glb', '/SEO4-Nhom14.2/webserver/upload/ferrari.glb', NULL, NULL, NULL, NULL, NULL),
+(23, NULL, NULL, 'LittlestTokyo.glb', '/SEO4-Nhom14.2/webserver/upload/LittlestTokyo.glb', NULL, NULL, NULL, NULL, NULL),
+(24, NULL, NULL, 'PrimaryIonDrive.glb', '/SEO4-Nhom14.2/webserver/upload/PrimaryIonDrive.glb', NULL, NULL, NULL, NULL, NULL),
+(25, NULL, NULL, 'Parrot.glb', '/SEO4-Nhom14.2/webserver/upload/Parrot.glb', NULL, NULL, NULL, NULL, NULL),
+(26, NULL, NULL, 'Soldier.glb', '/SEO4-Nhom14.2/webserver/upload/Soldier.glb', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_animation`
+--
+
+CREATE TABLE `model_animation` (
+  `id` int(15) NOT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `speed` float DEFAULT NULL,
+  `selected` bit(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -64,6 +78,12 @@ ALTER TABLE `model3d`
   ADD KEY `animations` (`animations`);
 
 --
+-- Indexes for table `model_animation`
+--
+ALTER TABLE `model_animation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -71,7 +91,23 @@ ALTER TABLE `model3d`
 -- AUTO_INCREMENT for table `model3d`
 --
 ALTER TABLE `model3d`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `model_animation`
+--
+ALTER TABLE `model_animation`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `model_animation`
+--
+ALTER TABLE `model_animation`
+  ADD CONSTRAINT `model_animation_ibfk_1` FOREIGN KEY (`id`) REFERENCES `model3d` (`animations`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
