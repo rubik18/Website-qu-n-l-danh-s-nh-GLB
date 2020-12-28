@@ -7,7 +7,7 @@ var camera, scene, renderer;
 var mixer, clock;
 var  actions;
 
-let ambientLight, light;
+let ambientLight, dirLight;
 
 let effectController;
 
@@ -18,28 +18,51 @@ const specularColor = new THREE.Color();
 
 let check1 = false;
 
+const API = {
+    color: 0xffffff, // sRGB
+    exposure: 1.0
+};
+
+
 function init() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color('white');
     
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-    camera.position.set(5, 5, 5);
-
+    camera.position.set(0, 0.5, 1);
+    
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    ambientLight  = new THREE.DirectionalLight( 0xefefff, 1.5 );
-    ambientLight.position.set( 1, 1, 1 ).normalize();
+    ambientLight = new THREE.AmbientLight( 0x333333 );
+    // ambientLight.position.set( 1, 1, 1 ).normalize();
     scene.add(ambientLight)
 
-    light = new THREE.DirectionalLight( 0xffefef, 1.5 );
-    light.position.set( - 1, - 1, - 1 ).normalize();
-    scene.add(light);
+    dirLight = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+    dirLight.position.set( 0, 3, 0 ).normalize();
+    dirLight.castShadow = true;
+    scene.add(dirLight);
 
     var controls = new OrbitControls( camera, renderer.domElement);
 
     clock = new THREE.Clock();
+
+    const planeGeo = new THREE.PlaneBufferGeometry(100, 100);
+    const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
+    const plane = new THREE.Mesh(planeGeo, planeMat);
+    plane.rotation.x = - Math.PI / 2;
+    // plane.position.z = 10
+    plane.receiveShadow = true;
+    scene.add(plane);
+
+    const grid = new THREE.GridHelper( 100, 20, 0x000000, 0x000000 );
+    grid.material.opacity = 0.2;
+    grid.material.transparent = true;
+    scene.add( grid );
+
 
     const materialColor = new THREE.Color();
     materialColor.setRGB( 1.0, 1.0, 1.0 );
@@ -58,12 +81,12 @@ function init() {
     var loader = new GLTFLoader();
     loader.load('../../data/test1.1.glb', (gltf) => {
         var obj = gltf.scene;
-        // obj.scale.set(0.02, 0.02, 0.02);
-        obj.scale.set(0.5, 0.5, 0.5)
+        centralize(obj);
 
         obj.traverse((o) => {
             if(o.isMesh) {
                 o.material.map = text;
+                o.castShadow = true;
             }
         })
 
@@ -76,9 +99,29 @@ function init() {
         actions.play();
 
         scene.add(obj);
-    })
+        }
+        // , 
+        // onProgress(), 
+        // onError()
+    );
 
     window.addEventListener( 'resize', onWindowResize, false );
+}
+
+function centralize (object) {
+    let boundingBox = new THREE.Box3().setFromObject(object);
+
+    let size = new THREE.Vector3();
+    boundingBox.getSize(size);
+
+    let scale = Math.max(size.x, size.y, size.z);
+    object.scale.set(1/scale, 1/scale, 1/scale);
+
+    let centerbox = new THREE.Vector3();
+    boundingBox.setFromObject(object);
+
+    let _centerbox = boundingBox.getCenter(centerbox);
+    object.position.sub(_centerbox);
 }
 
 function setupGui() {
@@ -166,6 +209,26 @@ function unPauseAllActions() {
    
 }
 
+function onProgress( xhr ) {
+
+    if ( xhr.lengthComputable ) {
+
+        updateProgressBar( xhr.loaded / xhr.total );
+
+        console.log( Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' );
+
+    }
+
+}
+
+function onError() {
+
+    const message = "Error loading model";
+    progressBarDiv.innerText = message;
+    console.log( message );
+
+}
+
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -178,10 +241,14 @@ function onWindowResize() {
 function render() {
     
     // Ambient's actually controlled by the light for this demo
+    diffuseColor.setHSL( effectController.hue, effectController.saturation, effectController.lightness );
+
+    diffuseColor.multiplyScalar( effectController.kd );
+    specularColor.multiplyScalar( effectController.ks );
     ambientLight.color.setHSL( effectController.hue, effectController.saturation, effectController.lightness * effectController.ka );
 
-    light.position.set( effectController.lx, effectController.ly, effectController.lz );
-    light.color.setHSL( effectController.lhue, effectController.lsaturation, effectController.llightness );
+    dirLight.position.set( effectController.lx, effectController.ly, effectController.lz );
+    dirLight.color.setHSL( effectController.lhue, effectController.lsaturation, effectController.llightness );
 }
 
 function animate() {
