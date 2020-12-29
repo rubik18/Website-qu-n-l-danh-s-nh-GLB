@@ -6,19 +6,26 @@ import {GUI} from '../three/dat.gui.module.js';
 let camera, scene, renderer, controls;
 
 let ambientLight, dirLight;
+
 let object, mixer, clock, actions;
 
 let check1 = false;
 
+let raycaster, mouse;
+
 let params, folder;
 
-var gui = new GUI()
+var gui = new GUI();
+
+let group;
 
 function init() {
     _initGp();
     _loadGLTF();
 
     clock = new THREE.Clock();
+
+    window.addEventListener( "mouseup", _mouseup, false );
 
     window.addEventListener( 'resize', onWindowResize, false );
 }
@@ -43,11 +50,11 @@ function _initGp() {
 }
 
 function _light() {
-    ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
+    ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
     scene.add(ambientLight)
 
     dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
-    dirLight.position.set( 0, 3, 0 ).normalize();
+    // dirLight.position.set( 0, 3, 0 ).normalize();
     dirLight.castShadow = true;
     scene.add(dirLight);
 
@@ -55,6 +62,25 @@ function _light() {
 
 function _orbitControl() {
     controls = new OrbitControls( camera, renderer.domElement );
+}
+
+function _mouseup( event ) {
+    group = [];
+    group.push(object);
+    
+    raycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
+    
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+    
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects( group, true );
+
+    if ( intersects.length > 0 ) {
+        pauseContinue();
+    }
 }
 
 function _plane() {
@@ -99,7 +125,7 @@ function _loadTexture() {
 
 function _loadGLTF() {
     var loader = new GLTFLoader();
-    loader.load('../../data/test1.1.glb', (gltf) => {
+    loader.load('../../data/Horse.glb', (gltf) => {
         object = gltf.scene;
         centralize(object);
 
