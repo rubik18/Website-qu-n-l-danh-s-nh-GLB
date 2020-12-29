@@ -3,31 +3,30 @@ import {GLTFLoader} from '../three/GLTFLoader.js'
 import {OrbitControls} from '../three/OrbitControls.js';
 import {GUI} from '../three/dat.gui.module.js';
 
-var camera, scene, renderer;
-var mixer, clock;
-var  actions;
+let camera, scene, renderer, controls;
 
 let ambientLight, dirLight;
-
-let effectController;
-
-let wireMaterial, flatMaterial, gouraudMaterial;
-
-const diffuseColor = new THREE.Color();
-const specularColor = new THREE.Color();
+let object, mixer, clock, actions;
 
 let check1 = false;
 
-const API = {
-    color: 0xffffff, // sRGB
-    exposure: 1.0
-};
+let params, folder;
 
+var gui = new GUI()
 
 function init() {
+    _initGp();
+    _loadGLTF();
+
+    clock = new THREE.Clock();
+
+    window.addEventListener( 'resize', onWindowResize, false );
+}
+
+function _initGp() {
     scene = new THREE.Scene();
     scene.background = new THREE.Color('white');
-    
+
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     camera.position.set(0, 0.5, 1);
     
@@ -37,24 +36,33 @@ function init() {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    ambientLight = new THREE.AmbientLight( 0x333333 );
-    // ambientLight.position.set( 1, 1, 1 ).normalize();
+    _light();
+    _orbitControl();
+    _plane();
+
+}
+
+function _light() {
+    ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
     scene.add(ambientLight)
 
-    dirLight = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+    dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
     dirLight.position.set( 0, 3, 0 ).normalize();
     dirLight.castShadow = true;
     scene.add(dirLight);
 
-    var controls = new OrbitControls( camera, renderer.domElement);
+}
 
-    clock = new THREE.Clock();
+function _orbitControl() {
+    controls = new OrbitControls( camera, renderer.domElement );
+}
 
+function _plane() {
     const planeGeo = new THREE.PlaneBufferGeometry(100, 100);
     const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
     const plane = new THREE.Mesh(planeGeo, planeMat);
     plane.rotation.x = - Math.PI / 2;
-    // plane.position.z = 10
+    plane.position.y = - 0.2;
     plane.receiveShadow = true;
     scene.add(plane);
 
@@ -62,50 +70,6 @@ function init() {
     grid.material.opacity = 0.2;
     grid.material.transparent = true;
     scene.add( grid );
-
-
-    const materialColor = new THREE.Color();
-    materialColor.setRGB( 1.0, 1.0, 1.0 );
-    
-    wireMaterial = new THREE.MeshBasicMaterial( { color: 0xFFFFFF, wireframe: true } );
-
-    flatMaterial = new THREE.MeshPhongMaterial( { color: materialColor, specular: 0x000000, flatShading: true, side: THREE.DoubleSide } );
-
-    gouraudMaterial = new THREE.MeshLambertMaterial( { color: materialColor, side: THREE.DoubleSide } );
-
-    var textureLoader = new THREE.TextureLoader();
-    var text = textureLoader.load('../../data/12.jpg');
-    // map.encoding = THREE.sRGBEncoding;
-    text.flipY = false;
-
-    var loader = new GLTFLoader();
-    loader.load('../../data/Flamingo.glb', (gltf) => {
-        var obj = gltf.scene;
-        centralize(obj);
-
-        obj.traverse((o) => {
-            if(o.isMesh) {
-                o.material.map = text;
-                o.castShadow = true;
-            }
-        })
-
-        setupGui();
-        // createPanel();
-
-        mixer = new THREE.AnimationMixer( obj );
-        // mixer.clipAction( gltf.animations[ 0 ] ).play();
-        actions = mixer.clipAction( gltf.animations[ 0 ] );
-        actions.play();
-
-        scene.add(obj);
-        }
-        // , 
-        // onProgress(), 
-        // onError()
-    );
-
-    window.addEventListener( 'resize', onWindowResize, false );
 }
 
 function centralize (object) {
@@ -124,62 +88,102 @@ function centralize (object) {
     object.position.sub(_centerbox);
 }
 
-function setupGui() {
+function _loadTexture() {
+    var textureLoader = new THREE.TextureLoader();
+    var text = textureLoader.load('../../data/12.jpg');
+    // map.encoding = THREE.sRGBEncoding;
+    text.flipY = false;
 
-    effectController = {
+    return text;
+}
 
-        ka: 0.17,
-        kd: 0.51,
-        ks: 0.2,
+function _loadGLTF() {
+    var loader = new GLTFLoader();
+    loader.load('../../data/test1.1.glb', (gltf) => {
+        object = gltf.scene;
+        centralize(object);
 
-        hue:	0.121,
-        saturation: 0.73,
-        lightness: 0.66,
+        object.traverse((o) => {
+            if(o.isMesh) {
+                _guiMaterial(o);
 
-        lhue:	0.04,
-        lsaturation: 0.01,
-        llightness: 1.0,
+                o.material.map = _loadTexture();
+                o.castShadow = true;
+                o.receiveShadow = true;
+            }
+        })
+        
+        _guiShadow();
+        _guiAnimation();
 
-        lx: 0.5,
-        ly: 0.39,
-        lz: 0.7,
+        mixer = new THREE.AnimationMixer( object );
+        actions = mixer.clipAction( gltf.animations[ 0 ] );
+        actions.play();
 
+        scene.add(object);
+        }
+        // , 
+        // onProgress(), 
+        // onError()
+    );
+}
+
+function _guiMaterial(obj) {
+    params = {
+        color : '#ffffff',
+    }
+
+    folder = gui.addFolder('Material color');
+
+    folder.addColor(params, 'color').onChange( function(colorValue) {
+    obj.material.color.set(colorValue);
+    });
+}
+
+function _guiAnimation() {
+    params = {
         'pause/continue': pauseContinue,
+    }
+
+    folder = gui.addFolder('Pausing/Continue');
+    
+    folder.add(params, ('pause/continue'));
+
+}
+
+function _guiShadow() {
+    params = {
+        lightX: - 1,
+        lightY: - 1,
+        lightZ: - 1,
+        color: '#ffffff',
     };
 
-    let h;
-
-    const gui = new GUI();
-
-    // material (color)
-
-    h = gui.addFolder( "Material color" );
-
-    h.add( effectController, "hue", 0.0, 1.0, 0.025 ).name( "hue" ).onChange( render );
-    h.add( effectController, "saturation", 0.0, 1.0, 0.025 ).name( "saturation" ).onChange( render );
-    h.add( effectController, "lightness", 0.0, 1.0, 0.025 ).name( "lightness" ).onChange( render );
-
-    // light (point)
-
-    h = gui.addFolder( "Lighting" );
-
-    h.add( effectController, "lhue", 0.0, 1.0, 0.025 ).name( "hue" ).onChange( render );
-    h.add( effectController, "lsaturation", 0.0, 1.0, 0.025 ).name( "saturation" ).onChange( render );
-    h.add( effectController, "llightness", 0.0, 1.0, 0.025 ).name( "lightness" ).onChange( render );
-    h.add( effectController, "ka", 0.0, 1.0, 0.025 ).name( "ambient" ).onChange( render );
-
-    // light (directional)
-
-    h = gui.addFolder( "Light direction" );
-
-    h.add( effectController, "lx", - 1.0, 1.0, 0.025 ).name( "x" ).onChange( render );
-    h.add( effectController, "ly", - 1.0, 1.0, 0.025 ).name( "y" ).onChange( render );
-    h.add( effectController, "lz", - 1.0, 1.0, 0.025 ).name( "z" ).onChange( render );
-
-    h = gui.addFolder('Pausing/Continue');
+    folder = gui.addFolder('Light direction');
     
-    h.add(effectController, ('pause/continue'));
+    folder.add( params, 'lightX', - 1, 1 ).name( 'light direction x' ).onChange( function ( value ) {
 
+        dirLight.position.x = value;
+
+    } );
+
+    folder.add( params, 'lightY', - 1, 1 ).name( 'light direction y' ).onChange( function ( value ) {
+
+        dirLight.position.y = value;
+
+    } );
+
+    folder.add( params, 'lightZ', - 1, 1 ).name( 'light direction z' ).onChange( function ( value ) {
+
+        dirLight.position.z = value;
+
+    } );
+
+    folder = gui.addFolder('Light color');
+
+    folder.addColor( params, 'color', -1, 1 ).name( 'Light color' ).onChange((value) => {
+        dirLight.color.set(value)
+    })
 }
 
 function pauseContinue() {
@@ -193,8 +197,6 @@ function pauseContinue() {
         check1 = true;
         pauseAllActions();
     }
-
-    console.log(check1)
 }
 
 function pauseAllActions() {
@@ -236,19 +238,6 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight );
 
     animate();
-}
-
-function render() {
-    
-    // Ambient's actually controlled by the light for this demo
-    diffuseColor.setHSL( effectController.hue, effectController.saturation, effectController.lightness );
-
-    diffuseColor.multiplyScalar( effectController.kd );
-    specularColor.multiplyScalar( effectController.ks );
-    ambientLight.color.setHSL( effectController.hue, effectController.saturation, effectController.lightness * effectController.ka );
-
-    dirLight.position.set( effectController.lx, effectController.ly, effectController.lz );
-    dirLight.color.setHSL( effectController.lhue, effectController.lsaturation, effectController.llightness );
 }
 
 function animate() {
