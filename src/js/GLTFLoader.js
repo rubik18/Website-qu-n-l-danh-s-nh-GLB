@@ -54,7 +54,6 @@ function _light() {
     scene.add(ambientLight)
 
     dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
-    // dirLight.position.set( 0, 3, 0 ).normalize();
     dirLight.castShadow = true;
     scene.add(dirLight);
 
@@ -183,6 +182,7 @@ function _guiShadow() {
         lightY: - 1,
         lightZ: - 1,
         color: '#ffffff',
+        intensity: dirLight.intensity,
     };
 
     folder = gui.addFolder('Light direction');
@@ -206,6 +206,11 @@ function _guiShadow() {
     } );
 
     folder = gui.addFolder('Light color');
+
+    folder.add(params, 'intensity', -0.5, 2).name('intensity').onChange((value) => {
+        dirLight.intensity = value
+
+    })
 
     folder.addColor( params, 'color', -1, 1 ).name( 'Light color' ).onChange((value) => {
         dirLight.color.set(value)
