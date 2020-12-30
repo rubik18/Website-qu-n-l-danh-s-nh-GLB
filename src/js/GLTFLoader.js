@@ -47,6 +47,10 @@ function _initGp() {
     _orbitControl();
     _plane();
 
+    var url = '../../data/panorama/p1/'
+
+    panoramaCube(url, '.jpg');
+
 }
 
 function _light() {
@@ -55,6 +59,7 @@ function _light() {
 
     dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
     dirLight.castShadow = true;
+    dirLight.shadow.radius = 4;
     scene.add(dirLight);
 
 }
@@ -83,7 +88,7 @@ function _mouseup( event ) {
 }
 
 function _plane() {
-    const planeGeo = new THREE.PlaneBufferGeometry(100, 100);
+    const planeGeo = new THREE.PlaneBufferGeometry(3, 3);
     const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
     const plane = new THREE.Mesh(planeGeo, planeMat);
     plane.rotation.x = - Math.PI / 2;
@@ -91,7 +96,7 @@ function _plane() {
     plane.receiveShadow = true;
     scene.add(plane);
 
-    const grid = new THREE.GridHelper( 100, 20, 0x000000, 0x000000 );
+    const grid = new THREE.GridHelper( 3,3, 0x000000, 0x000000 );
     grid.material.opacity = 0.2;
     grid.material.transparent = true;
     scene.add( grid );
@@ -115,7 +120,7 @@ function centralize (object) {
 
 function _loadTexture() {
     var textureLoader = new THREE.TextureLoader();
-    var text = textureLoader.load('../../data/12.jpg');
+    var text = textureLoader.load('../../data/gltf/12.jpg');
     // map.encoding = THREE.sRGBEncoding;
     text.flipY = false;
 
@@ -124,7 +129,7 @@ function _loadTexture() {
 
 function _loadGLTF() {
     var loader = new GLTFLoader();
-    loader.load('../../data/Horse.glb', (gltf) => {
+    loader.load('../../data/gltf/test1.1.glb', (gltf) => {
         object = gltf.scene;
         centralize(object);
 
@@ -183,9 +188,15 @@ function _guiShadow() {
         lightZ: - 1,
         color: '#ffffff',
         intensity: dirLight.intensity,
+        Directional_light_Radius: 4,
     };
 
     folder = gui.addFolder('Light direction');
+
+    // folder.add( params, 'Directional_light_Radius', 2, 8 ).name('Directional light Radius').onChange(( value ) => {
+    //     dirLight.shadow.radius = value;
+    //     console.log(dirLight.shadow.radius = value)
+    // })
     
     folder.add( params, 'lightX', - 1, 1 ).name( 'light direction x' ).onChange( function ( value ) {
 
@@ -242,6 +253,20 @@ function unPauseAllActions() {
    
 }
 
+function panoramaCube(url, format) {
+    var urls = [
+        url + 'posx' + format, url + 'negx' + format,
+        url + 'posy' + format, url + 'negy' + format,
+        url + 'posz' + format, url + 'negz' + format
+    ];
+
+    var textureCube = new THREE.CubeTextureLoader().load( urls );
+    textureCube.mapping = THREE.CubeRefractionMapping;
+
+    scene.background = textureCube;
+
+}
+
 function onProgress( xhr ) {
 
     if ( xhr.lengthComputable ) {
@@ -271,6 +296,12 @@ function onWindowResize() {
     animate();
 }
 
+function render() {
+
+    renderer.render( scene, camera );
+
+}
+
 function animate() {
     requestAnimationFrame( animate );
 
@@ -278,7 +309,7 @@ function animate() {
         mixer.update( clock.getDelta() );
     }
     
-    renderer.render(scene, camera);
+    render();
 }
 
 init()
