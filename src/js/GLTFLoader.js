@@ -47,9 +47,12 @@ function _initGp() {
     _orbitControl();
     _plane();
 
-    var url = '../../data/panorama/p1/'
+    var url = '../../data/panorama/p1/';
+    var url_e = '../../data/panorama/p_e/a.jpg';
 
-    panoramaCube(url, '.jpg');
+    // panoramaCube(url, '.jpg');
+
+    panoramaEquirectanggular(url_e);
 
 }
 
@@ -265,6 +268,23 @@ function panoramaCube(url, format) {
 
     scene.background = textureCube;
 
+}
+
+function panoramaEquirectanggular(url) {
+    // var geometry = new THREE.SphereBufferGeometry(32, 32 ,32);
+    // var texture = new THREE.TextureLoader().load(url);
+    // var material = new THREE.MeshBasicMaterial( { map: texture });
+    // geometry.scale( -1, 1, 1 );
+
+    // var mesh = new THREE.Mesh(geometry, material);
+    // scene.add(mesh);
+    const textureLoader = new THREE.TextureLoader();
+
+    var textureEquirec = textureLoader.load( url );
+    textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
+    textureEquirec.encoding = THREE.sRGBEncoding;
+
+    scene.background = textureEquirec;
 }
 
 function onProgress( xhr ) {
