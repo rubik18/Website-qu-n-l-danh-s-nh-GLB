@@ -16,12 +16,12 @@
     * Bạn có thể xem chi tiết từng file 3D như :Mã sản phẩm,tên sản phẩm, kích thước, danh sách animation, tốc độ animation...
     * Bạn có thể xóa 1 hay nhiều file.*glb* khi có nhu cầu. -->
     a.**Các chức năng có trên thanh công cụ**
-        - *Chức năng tải file 3d lên website*: Người dùng chọn chức năng **Upload File** ở trên thanh công cụ, sau khi điền đủ các trường và nhấn **chấp nhận** là người dùng đã upload 1 file 3d(glb) thành công.
-        - *Chức năng xem danh sách các file 3d đã upload lên*: Khi kích chuột chọn chức năng **List file GLB** màn hình sẽ hiện lên danh sách các file glb đã được upload lên dưới dạng bảng với các trường thông tin là thông tin của file GLB đó.
+        - ![*Chức năng tải file 3d lên website*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/upload.png): Người dùng chọn chức năng **Upload File** ở trên thanh công cụ, sau khi điền đủ các trường và nhấn **chấp nhận** là người dùng đã upload 1 file 3d(glb) thành công.
+        - ![*Chức năng xem danh sách các file 3d đã upload lên*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/listView.png): Khi kích chuột chọn chức năng **List file GLB** màn hình sẽ hiện lên danh sách các file glb đã được upload lên dưới dạng bảng với các trường thông tin là thông tin của file GLB đó.
         - *Chức năng hiển thị file GLB*: Để có thể xem được chi tiết của file GLB người dùng chọn mục **Show view GLB**
-        - *Chức năng đăng nhập, đăng xuất*: để có thể bảo mật về tài nguyên của người dùng, chức năng **login** khi người dùng truy cập vào trang web giúp người dùng có thể quản lý đúng file GLB của mình cũng như đảm bảo quyền riêng tư về dữ liệu, ngoài ra chức năng **logout** sẽ đi kèm 
-        - *Chức năng xem thông tin trang web* : thông tin của trang web được nói đến trong phần **help**
-        - *Thanh hiển thị list gồm tên các file GLB*: Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
+        - ![*Chức năng đăng nhập, đăng xuất*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/login.png): để có thể bảo mật về tài nguyên của người dùng, chức năng **login** khi người dùng truy cập vào trang web giúp người dùng có thể quản lý đúng file GLB của mình cũng như đảm bảo quyền riêng tư về dữ liệu, ngoài ra chức năng **logout** sẽ đi kèm 
+        - ![*Chức năng xem thông tin trang web*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/help.png) : thông tin của trang web được nói đến trong phần **help**
+        - ![*Thanh hiển thị list gồm tên các file GLB*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/thanhlist.png): Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
     b. **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
     
 
