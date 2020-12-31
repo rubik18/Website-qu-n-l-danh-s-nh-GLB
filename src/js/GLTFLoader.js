@@ -2,7 +2,7 @@ import *as THREE from '../three/three.module.js'
 import {GLTFLoader} from '../three/GLTFLoader.js'
 import {OrbitControls} from '../three/OrbitControls.js';
 import {GUI} from '../three/dat.gui.module.js';
-
+import {RGBELoader} from '../three/RGBELoader.js'
 let camera, scene, renderer, controls;
 
 let ambientLight, dirLight;
@@ -15,9 +15,30 @@ let raycaster, mouse;
 
 let params, folder;
 
+let group;
+
 var gui = new GUI();
 
-let group;
+const urlCube = {
+    cube1: '../../data/panorama/cube/cube1/',
+    cube2: '../../data/panorama/cube/cube2/',
+    cube3: '../../data/panorama/cube/cube3/',
+
+    format: '.jpg',
+}
+
+var urlEquirectangular = {
+    equi1: '../../data/panorama/equirectangular/equi1.jpg',
+    equi2: '../../data/panorama/equirectangular/equi2.jpg',
+    equi3: '../../data/panorama/equirectangular/equi3.png',
+}
+var urlHdr = {
+    hdr1: '../../data/hdr/hdr1.hdr',
+    hdr2: '../../data/hdr/hdr2.hdr',
+    hdr3: '../../data/hdr/hdr3.hdr',
+    hdr4: '../../data/hdr/hdr4.hdr',
+};
+   
 
 function init() {
     _initGp();
@@ -46,14 +67,6 @@ function _initGp() {
     _light();
     _orbitControl();
     _plane();
-
-    var url = '../../data/panorama/p1/';
-    var url_e = '../../data/panorama/p_e/a.jpg';
-
-    // panoramaCube(url, '.jpg');
-
-    panoramaEquirectanggular(url_e);
-
 }
 
 function _light() {
@@ -148,6 +161,7 @@ function _loadGLTF() {
         
         _guiShadow();
         _guiAnimation();
+        _guiPanorama(); 
 
         mixer = new THREE.AnimationMixer( object );
         actions = mixer.clipAction( gltf.animations[ 0 ] );
@@ -231,6 +245,48 @@ function _guiShadow() {
     })
 }
 
+function _guiPanorama() {
+    params = {
+        Cube: () => {
+            panoramaCube(urlCube.cube1, urlCube.format)
+        },
+
+        Equirectangular: () => {
+            panoramaEquirectanggular(urlEquirectangular.equi3)
+        },
+
+        Envinronment: () => {
+            environment(urlHdr.hdr4)
+        },
+    }
+
+    folder = gui.addFolder('Panorama');
+    
+    folder.add(params, 'Cube');
+    folder.add(params, 'Equirectangular');
+    folder.add(params, 'Envinronment');
+}
+
+function environment(url) {
+    var pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+
+    var loader =  new RGBELoader();
+    loader.setDataType(THREE.UnsignedByteType)
+    loader.load(url, (hdrTextures) => {
+        
+        var hdrEqiTarget = pmremGenerator.fromEquirectangular(hdrTextures).texture;
+        
+        // this.scene.background = new THREE.Color('000000')
+        scene.background = hdrEqiTarget
+        scene.environment = hdrEqiTarget
+        
+        hdrEqiTarget .dispose();
+        pmremGenerator.dispose();
+        
+    })
+}
+
 function pauseContinue() {
 
     if (check1) {
@@ -271,13 +327,6 @@ function panoramaCube(url, format) {
 }
 
 function panoramaEquirectanggular(url) {
-    // var geometry = new THREE.SphereBufferGeometry(32, 32 ,32);
-    // var texture = new THREE.TextureLoader().load(url);
-    // var material = new THREE.MeshBasicMaterial( { map: texture });
-    // geometry.scale( -1, 1, 1 );
-
-    // var mesh = new THREE.Mesh(geometry, material);
-    // scene.add(mesh);
     const textureLoader = new THREE.TextureLoader();
 
     var textureEquirec = textureLoader.load( url );
