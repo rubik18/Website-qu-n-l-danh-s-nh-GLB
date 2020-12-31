@@ -247,24 +247,53 @@ function _guiShadow() {
 
 function _guiPanorama() {
     params = {
-        Cube: () => {
-            panoramaCube(urlCube.cube1, urlCube.format)
-        },
-
-        Equirectangular: () => {
-            panoramaEquirectanggular(urlEquirectangular.equi3)
-        },
-
-        Envinronment: () => {
-            environment(urlHdr.hdr4)
-        },
+        Cube: 'null',
+        Equirectangular: 'null',
+        Envinronment: 'null',
     }
 
     folder = gui.addFolder('Panorama');
     
-    folder.add(params, 'Cube');
-    folder.add(params, 'Equirectangular');
-    folder.add(params, 'Envinronment');
+    folder.add(params, 'Cube', ['Cube1', 'Cube2', 'Cube3']).onChange(_updatePanorama);
+    folder.add(params, 'Equirectangular', ['Equirectangular1', 'Equirectangular2', 'Equirectangular3']).onChange(_updatePanorama);
+    folder.add(params, 'Envinronment', ['Envinronment1', 'Envinronment2', 'Envinronment3', 'Envinronment4']).onChange(_updatePanorama);
+}
+
+function _updatePanorama(value) {
+    switch(value) {
+        case 'Cube1':
+            panoramaCube(urlCube.cube1, urlCube.format);
+            break;
+        case 'Cube2':
+            panoramaCube(urlCube.cube2, urlCube.format);
+            break;
+        case 'Cube3':
+            panoramaCube(urlCube.cube3, urlCube.format);
+            break;
+
+        case 'Equirectangular1':
+            panoramaEquirectanggular(urlEquirectangular.equi1);
+            break;
+        case 'Equirectangular2':
+            panoramaEquirectanggular(urlEquirectangular.equi2);
+            break;
+        case 'Equirectangular3':
+            panoramaEquirectanggular(urlEquirectangular.equi3);
+            break;
+
+        case 'Envinronment1':
+            environment(urlHdr.hdr1);
+            break;
+        case 'Envinronment2':
+            environment(urlHdr.hdr2);
+            break;
+        case 'Envinronment3':
+            environment(urlHdr.hdr3);
+            break;
+        case 'Envinronment4':
+            environment(urlHdr.hdr4);
+            break;
+    }
 }
 
 function environment(url) {
