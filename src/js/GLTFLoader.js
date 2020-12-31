@@ -7,6 +7,8 @@ let camera, scene, renderer, controls;
 
 let ambientLight, dirLight;
 
+let plane, grid;
+
 let object, mixer, clock, actions;
 
 let check1 = false;
@@ -67,6 +69,7 @@ function _initGp() {
     _light();
     _orbitControl();
     _plane();
+    
 }
 
 function _light() {
@@ -102,22 +105,20 @@ function _mouseup( event ) {
         pauseContinue();
     }
 }
-
 function _plane() {
     const planeGeo = new THREE.PlaneBufferGeometry(3, 3);
     const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
-    const plane = new THREE.Mesh(planeGeo, planeMat);
+    plane = new THREE.Mesh(planeGeo, planeMat);
     plane.rotation.x = - Math.PI / 2;
-    plane.position.y = - 0.2;
+    plane.position.y = - 0.4;
     plane.receiveShadow = true;
     scene.add(plane);
 
-    const grid = new THREE.GridHelper( 3,3, 0x000000, 0x000000 );
+    grid = new THREE.GridHelper( 3,3, 0x000000, 0x000000 );
     grid.material.opacity = 0.2;
     grid.material.transparent = true;
     scene.add( grid );
 }
-
 function centralize (object) {
     let boundingBox = new THREE.Box3().setFromObject(object);
 
@@ -158,11 +159,12 @@ function _loadGLTF() {
                 o.receiveShadow = true;
             }
         })
-        
+
+        _guiPlane();
         _guiShadow();
         _guiAnimation();
         _guiPanorama(); 
-
+        
         mixer = new THREE.AnimationMixer( object );
         actions = mixer.clipAction( gltf.animations[ 0 ] );
         actions.play();
@@ -196,6 +198,36 @@ function _guiAnimation() {
     
     folder.add(params, ('pause/continue'));
 
+}
+
+function _guiPlane() {
+    params = {
+        'Plane': 'Enable Plane',
+        'Grid': 'Enable Grid',
+    }
+
+    folder = gui.addFolder('Plane');
+
+    folder.add(params, 'Plane', ['Enable Plane', 'Disable plane']).onChange(updatePlane);
+    folder.add(params, 'Grid', ['Enable Grid', 'Disable Grid']).onChange(updatePlane)
+}
+
+function updatePlane(value) {
+    switch(value) {
+        case 'Enable Plane':
+            enablePlane();
+            break;
+        case 'Disable plane':
+            disablePlane()
+            break;
+
+        case 'Enable Grid':
+            enableGrid();
+            break;
+        case 'Disable Grid':
+            disableGrid();
+            break;
+    }
 }
 
 function _guiShadow() {
@@ -314,6 +346,22 @@ function environment(url) {
         pmremGenerator.dispose();
         
     })
+}
+
+function enablePlane() {
+    plane.visible = true;
+}
+
+function disablePlane() {
+    plane.visible = false;
+}
+
+function enableGrid() {
+    grid.visible = true;
+}
+
+function disableGrid() {
+    grid.visible = false;
 }
 
 function pauseContinue() {
