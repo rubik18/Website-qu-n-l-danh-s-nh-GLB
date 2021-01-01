@@ -6,20 +6,34 @@ import {RGBELoader} from '../three/RGBELoader.js';
 
 let camera, scene, renderer, controls;
 
+// light
+
 let ambientLight, dirLight;
+
+// plane
 
 let plane, grid;
 
+// animation
+
 let object, mixer, clock, action;
 let actions = [];
+let check1 = false;
+
+// loading
 
 let progressBarDiv;
 
-let check1 = false;
+// raycast
 
 let raycaster, mouse, group;
 
+// gui
+
+var gui = new GUI();
 let params, folder;
+
+// url panorama cubemap
 
 const urlCube = {
     cube1: '../../data/panorama/cube/cube1/',
@@ -29,17 +43,24 @@ const urlCube = {
     format: '.jpg',
 }
 
+// url panorama equirectangular
+
 var urlEquirectangular = {
     equi1: '../../data/panorama/equirectangular/equi1.jpg',
     equi2: '../../data/panorama/equirectangular/equi2.jpg',
     equi3: '../../data/panorama/equirectangular/equi3.png',
 }
+
+// url environment
+
 var urlHdr = {
     hdr1: '../../data/hdr/hdr1.hdr',
     hdr2: '../../data/hdr/hdr2.hdr',
     hdr3: '../../data/hdr/hdr3.hdr',
     hdr4: '../../data/hdr/hdr4.hdr',
 };
+
+// url texture
 
 var urlTexture = {
     texture1: '../data/texture/texture1',
@@ -50,13 +71,13 @@ var urlTexture = {
     format2: '.png',
 }
 
+// path file gltf
+
 var path = window.location.pathname;
 const urlParams = new URLSearchParams(window.location.search);
 const filePathUrl = urlParams.get('url');
 const filePathName = urlParams.get('file');
 const filePathFormat = urlParams.get('format');
-
-var gui = new GUI();
 
 init()
 animate();
@@ -75,6 +96,9 @@ function init() {
 }
 
 function _initGp() {
+
+    // Creating the scene
+
     scene = new THREE.Scene();
     scene.background = new THREE.Color('white');
 
@@ -95,9 +119,14 @@ function _initGp() {
 }
 
 function _light() {
+
+    // Creating the ambient light
+
     ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
     scene.add(ambientLight)
 
+    // Creating the directional light
+    
     dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
     dirLight.castShadow = true;
     dirLight.shadow.radius = 4;
@@ -112,20 +141,32 @@ function _light() {
 }
 
 function _orbitControl() {
+
+    // OrbitControls
+
     controls = new OrbitControls( camera, renderer.domElement );
 }
 
-function _mouseup( event ) {
+function _mouseup( event ) {    
     group = [];
     group.push(object);
     
+    // raycaster
+
     raycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
+
+    // calculate mouse position in normalized device coordinates
+    // (-1 to +1) for both component
     
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
     
+    // update the picking ray with the camera and mouse position
+
     raycaster.setFromCamera(mouse, camera);
+
+    // calculate objects intersecting the picking ray
 
     const intersects = raycaster.intersectObjects( group, true );
 
@@ -135,6 +176,9 @@ function _mouseup( event ) {
 }
 
 function _plane() {
+    
+    // Creating the plan and grid
+
     const planeGeo = new THREE.PlaneBufferGeometry(3, 3);
     const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
     plane = new THREE.Mesh(planeGeo, planeMat);
@@ -151,6 +195,8 @@ function _plane() {
     scene.add( grid );
 }
 function centralize (object) {
+
+    // center object
     let boundingBox = new THREE.Box3().setFromObject(object);
 
     let size = new THREE.Vector3();
@@ -166,16 +212,10 @@ function centralize (object) {
     object.position.sub(_centerbox);
 }
 
-function loadTexture(url, format) {
-    var textureLoader = new THREE.TextureLoader();
-    var text = textureLoader.load(url + format);
-    text.encoding = THREE.sRGBEncoding;
-    text.flipY = false;
-
-    return text;
-}
-
 function progressBarDivs() {
+    
+    // Creating the div 'Loading'
+
     progressBarDiv = document.createElement( 'div' );
     progressBarDiv.innerText = "Loading...";
     progressBarDiv.style.fontSize = "3em";
@@ -192,10 +232,15 @@ function _loadGLTF() {
     updateProgressBar( 0 );
     showProgressBar();
 
+    // load file gltf
+
     var loader = new GLTFLoader();
+
+    // path file gltf
 
     var pathGltf = '../../upload/gltf/' + filePathUrl + '/' + filePathName + filePathFormat;
     // ../../upload/gltf/glb/test1.1.glb
+
     loader.load(pathGltf, 
         (gltf) => {
             object = gltf.scene;
@@ -238,45 +283,10 @@ function _loadGLTF() {
 
 }
 
-function onProgress( xhr ) {
-
-    if ( xhr.lengthComputable ) {
-
-        updateProgressBar( xhr.loaded / xhr.total );
-
-        console.log( Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' );
-
-    }
-
-}
-
-function onError() {
-
-    const message = "Error loading model";
-    progressBarDiv.innerText = message;
-    console.log( message );
-
-}
-
-function showProgressBar() {
-
-    document.body.appendChild( progressBarDiv );
-
-}
-
-function hideProgressBar() {
-
-    document.body.removeChild( progressBarDiv );
-
-}
-
-function updateProgressBar( fraction ) {
-
-    progressBarDiv.innerText = 'Loading... ' + Math.round( fraction * 100, 2 ) + '%';
-
-}
-
 function _guiMaterial(obj) {
+    
+    // add gui material
+
     params = {
         color : '#ffffff',
         texture: 'null', 
@@ -304,6 +314,9 @@ function _guiMaterial(obj) {
 }
 
 function _guiAnimation() {
+    
+    // add gui pause/continue animation
+
     params = {
         'pause/continue': pauseContinue,
     }
@@ -315,6 +328,9 @@ function _guiAnimation() {
 }
 
 function _guiPlane() {
+
+    // add gui plane
+
     params = {
         Plane: 'Disable plane',
         Grid: 'Disable grid',
@@ -360,25 +376,9 @@ function _guiPlane() {
     } );    
 }
 
-function updatePlane(value) {
-    switch(value) {
-        case 'Enable plane':
-            enablePlane();
-            break;
-        case 'Disable plane':
-            disablePlane()
-            break;
-
-        case 'Enable grid':
-            enableGrid();
-            break;
-        case 'Disable grid':
-            disableGrid();
-            break;
-    }
-}
-
 function _guiLight() {
+
+    // add gui light
 
     params = {
         lightX: - 1,
@@ -429,6 +429,9 @@ function _guiLight() {
 }
 
 function _guiShadow() {
+    
+    // gui shadow
+
     params = {  
         radius : 4,      
         shadowTop: 2,
@@ -474,6 +477,9 @@ function _guiShadow() {
 }
 
 function _guiPanorama() {
+
+    // add gui panorama
+    
     params = {
         Cube: 'null',
         Equirectangular: 'null',
@@ -487,7 +493,146 @@ function _guiPanorama() {
     folder.add(params, 'Envinronment', ['Envinronment1', 'Envinronment2', 'Envinronment3', 'Envinronment4']).onChange(_updatePanorama);
 }
 
+function loadTexture(url, format) {
+
+    // load texture
+
+    var textureLoader = new THREE.TextureLoader();
+    var text = textureLoader.load(url + format);
+    text.encoding = THREE.sRGBEncoding;
+    text.flipY = false;
+
+    return text;
+}
+
+function panoramaCube(url, format) {
+
+    // panorama cubemap
+
+    var urls = [
+        url + 'posx' + format, url + 'negx' + format,
+        url + 'posy' + format, url + 'negy' + format,
+        url + 'posz' + format, url + 'negz' + format
+    ];
+
+    var textureCube = new THREE.CubeTextureLoader().load( urls );
+    textureCube.mapping = THREE.CubeRefractionMapping;
+
+    scene.background = textureCube;
+
+}
+
+function panoramaEquirectanggular(url) {
+
+    // panorama equirectanggular
+
+    const textureLoader = new THREE.TextureLoader();
+
+    var textureEquirec = textureLoader.load( url );
+    textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
+    textureEquirec.encoding = THREE.sRGBEncoding;
+
+    scene.background = textureEquirec;
+}
+function environment(url) {
+
+    // environment EquirectangularShader
+
+    var pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+
+    var loader =  new RGBELoader();
+    loader.setDataType(THREE.UnsignedByteType)
+    loader.load(url, (hdrTextures) => {
+        
+        var hdrEqiTarget = pmremGenerator.fromEquirectangular(hdrTextures).texture;
+        
+        scene.background = hdrEqiTarget
+        scene.environment = hdrEqiTarget
+        
+        hdrEqiTarget .dispose();
+        pmremGenerator.dispose();
+        
+    })
+}
+
+function updatePlane(value) {
+
+    // update plane
+
+    switch(value) {
+        case 'Enable plane':
+            enablePlane();
+            break;
+        case 'Disable plane':
+            disablePlane()
+            break;
+
+        case 'Enable grid':
+            enableGrid();
+            break;
+        case 'Disable grid':
+            disableGrid();
+            break;
+    }
+}
+
+function enablePlane() {
+    plane.visible = true;
+}
+
+function disablePlane() {
+    plane.visible = false;
+}
+
+function enableGrid() {
+    grid.visible = true;
+}
+
+function disableGrid() {
+    grid.visible = false;
+}
+
+function pauseContinue() {
+
+    // pause and continue animation
+
+    if (check1) {
+        check1 = false;
+        unPauseAllActions();
+    } else {
+        if (actions[0].paused) {
+            unPauseAllActions();
+        } else {
+            check1 = true
+            pauseAllActions();
+        }
+    }
+}
+
+function pauseAllActions() {
+    actions.forEach((act) => {
+        act.paused = true;
+    })
+}
+
+function unPauseAllActions() {
+    actions.forEach((act) => {
+        act.paused = false;
+    })
+   
+}
+
+function activateAllActions() {
+    for(let i = 0; i < actions.length; i++) {
+        actions[i].play();
+    }    
+}
+
 function _updatePanorama(value) {
+
+    // update panorama
+
     switch(value) {
         case 'Cube1':
             panoramaCube(urlCube.cube1, urlCube.format);
@@ -524,101 +669,47 @@ function _updatePanorama(value) {
     }
 }
 
-function environment(url) {
-    var pmremGenerator = new THREE.PMREMGenerator(renderer);
-    pmremGenerator.compileEquirectangularShader();
+function onProgress( xhr ) {
 
-    var loader =  new RGBELoader();
-    loader.setDataType(THREE.UnsignedByteType)
-    loader.load(url, (hdrTextures) => {
-        
-        var hdrEqiTarget = pmremGenerator.fromEquirectangular(hdrTextures).texture;
-        
-        scene.background = hdrEqiTarget
-        scene.environment = hdrEqiTarget
-        
-        hdrEqiTarget .dispose();
-        pmremGenerator.dispose();
-        
-    })
-}
+    if ( xhr.lengthComputable ) {
 
-function enablePlane() {
-    plane.visible = true;
-}
+        updateProgressBar( xhr.loaded / xhr.total );
 
-function disablePlane() {
-    plane.visible = false;
-}
+        console.log( Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' );
 
-function enableGrid() {
-    grid.visible = true;
-}
-
-function disableGrid() {
-    grid.visible = false;
-}
-
-function pauseContinue() {
-    if (check1) {
-        check1 = false;
-        unPauseAllActions();
-    } else {
-        if (actions[0].paused) {
-            unPauseAllActions();
-        } else {
-            check1 = true
-            pauseAllActions();
-        }
     }
-}
-
-function pauseAllActions() {
-    actions.forEach((act) => {
-        act.paused = true;
-    })
-}
-
-function unPauseAllActions() {
-    actions.forEach((act) => {
-        act.paused = false;
-    })
-   
-}
-
-function activateAllActions() {
-    for(let i = 0; i < actions.length; i++) {
-        actions[i].play();
-    }    
-}
-
-function panoramaCube(url, format) {
-    var urls = [
-        url + 'posx' + format, url + 'negx' + format,
-        url + 'posy' + format, url + 'negy' + format,
-        url + 'posz' + format, url + 'negz' + format
-    ];
-
-    var textureCube = new THREE.CubeTextureLoader().load( urls );
-    textureCube.mapping = THREE.CubeRefractionMapping;
-
-    scene.background = textureCube;
 
 }
 
-function panoramaEquirectanggular(url) {
-    const textureLoader = new THREE.TextureLoader();
+function onError() {
 
-    var textureEquirec = textureLoader.load( url );
-    textureEquirec.mapping = THREE.EquirectangularReflectionMapping;
-    textureEquirec.encoding = THREE.sRGBEncoding;
+    const message = "Error loading model";
+    progressBarDiv.innerText = message;
+    console.log( message );
 
-    scene.background = textureEquirec;
 }
 
+function showProgressBar() {
 
+    document.body.appendChild( progressBarDiv );
+
+}
+
+function hideProgressBar() {
+
+    document.body.removeChild( progressBarDiv );
+
+}
+
+function updateProgressBar( fraction ) {
+
+    progressBarDiv.innerText = 'Loading... ' + Math.round( fraction * 100, 2 ) + '%';
+
+}
 
 function onWindowResize() {
+
+    // resize window
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
