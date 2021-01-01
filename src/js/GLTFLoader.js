@@ -52,8 +52,10 @@ var urlTexture = {
 
 var path = window.location.pathname;
 const urlParams = new URLSearchParams(window.location.search);
-const filePath = urlParams.get('id');
-   
+const filePathUrl = urlParams.get('url');
+const filePathName = urlParams.get('file');
+const filePathFormat = urlParams.get('format');
+
 var gui = new GUI();
 
 function init() {
@@ -232,7 +234,9 @@ function _loadGLTF() {
 
     var loader = new GLTFLoader();
 
-    loader.load('../../data/gltf/CesiumMan/CesiumMan.gltf', (gltf) => {
+    var pathGltf = '../../upload/' + filePathUrl + '/' + filePathName + filePathFormat;
+
+    loader.load(path, (gltf) => {
         object = gltf.scene;
         centralize(object);
 
