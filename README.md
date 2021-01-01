@@ -16,14 +16,53 @@
     * Bạn có thể xem chi tiết từng file 3D như :Mã sản phẩm,tên sản phẩm, kích thước, danh sách animation, tốc độ animation...
     * Bạn có thể xóa 1 hay nhiều file.*glb* khi có nhu cầu. -->
     **Các chức năng có trên thanh công cụ**
+    * [*Chức năng đăng nhập, đăng xuất*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/login.png): để có thể bảo mật về tài nguyên của người dùng, chức năng **login** khi người dùng truy cập vào trang web giúp người dùng có thể quản lý đúng file GLB của mình cũng như đảm bảo quyền riêng tư về dữ liệu, ngoài ra chức năng **logout** sẽ đi kèm .
     * [*Chức năng tải file 3d lên website*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/upload.png): Người dùng chọn chức năng **Upload File** ở trên thanh công cụ, sau khi điền đủ các trường và nhấn **chấp nhận** là người dùng đã upload 1 file 3d(glb) thành công.
     * [*Chức năng xem danh sách các file 3d đã upload lên*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/listView.png): Khi kích chuột chọn chức năng **List file GLB** màn hình sẽ hiện lên danh sách các file glb đã được upload lên dưới dạng bảng với các trường thông tin là thông tin của file GLB đó.
-        *Chức năng hiển thị file GLB*: Để có thể xem được chi tiết của file GLB người dùng chọn mục **Show view GLB**.
-    * [*Chức năng đăng nhập, đăng xuất*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/login.png): để có thể bảo mật về tài nguyên của người dùng, chức năng **login** khi người dùng truy cập vào trang web giúp người dùng có thể quản lý đúng file GLB của mình cũng như đảm bảo quyền riêng tư về dữ liệu, ngoài ra chức năng **logout** sẽ đi kèm .
+    
+    *Chức năng hiển thị file GLB*: Để có thể xem được chi tiết của file GLB người dùng chọn mục **Show view GLB**.
+    
     * [*Chức năng xem thông tin trang web*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/help.png) : thông tin của trang web được nói đến trong phần **help**.
     * [*Thanh hiển thị list gồm tên các file GLB*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/thanhlist.png): Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
-    b. **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
+
+    **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
+    * *Chức năng Material*:
+    1. *Chức năng chọn màu(color)* giúp người dùng chỉnh màu theo hệ màu hexa.
+    2. *Chức năng thay đổi textture material*
+    * *Chức năng plane*:
+    1. Chức năng chỉnh: *tạo bóng (enable plane)* và *tắt bóng(disable plane)* 
+    2. Chức năng chỉnh: *tạo lưới(enable grib)* và *tắt lưới(disable grib)*
+    * *Chức năng plane direction*:Thay đổi vị trí của plane
+    1. *Plane direction x*
+    2. *Plane direction y*
+    3. *Plane direction z*
+    4. *Grib direction x*
+    5. *Grib direction y*
+    6. *Grib derection z*
+    * *Chức năng light color*:
+    1. Chức năng  chỉnh (*Directional Light*):- ánh sáng vật thể 
+    2. Chức năng chỉnh (*Ambient Light*)- ánh sáng môi trường xung quanh 
+    3. *Light color*:chọn màu cho lưới 
+    * *Light direction*:
+    1. *Light direction x*
+    2. *Light direction y*
+    3. *Light direction z*
+    * Chức năng tạm dừng hoặc tiếp tục để animation hoạt động -*Pausing/Continued*
+    * *Chức năng tạo panorama*:
+    1. *Cube*: chọn ảnh 360 độ 
+    2. *Eqiuretangular*
+    3. *Envinronment*
+
+
     
+## Cài đặt
+Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ Websever,ở đây chúng tôi hướng dẫn người dùng sử dụng Xampp:
+    * Trước hết bạn cần tải code từ github: [Website quản lý GLB](https://github.com/phuongvu0909/SEO4-Nhom14.2) dưới dạng file *.zip* hoặc clone code về repo local của máy nếu bạn có sử dụng *git*.
+    * Sau khi giải nén file: 
+    1. Import CSDL vào SQL: tạo một CSDL có tên *model3d*(cùng tên với tên dữ liệu sẽ import vào)
+    sau đó thực hiện import vào CSDL đó.
+    2. Đưa các file còn lại vào thư mục htdoc trong Xampp.
+    3. Truy cập 1 công cụ tìm kiếm bất kỳ có kết nối intenet và truy cập vào Website bằng đường dẫn: **http://localhost:8080/SEO4-Nhom14.2/webserver/web.php**
 
 ## Công nghệ - Công cụ - Thư viện
 
