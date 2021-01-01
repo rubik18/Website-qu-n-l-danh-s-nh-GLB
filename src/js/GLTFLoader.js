@@ -1,25 +1,23 @@
-import *as THREE from '../three/three.module.js'
-import {GLTFLoader} from '../three/GLTFLoader.js'
+import *as THREE from '../three/three.module.js';
+import {GLTFLoader} from '../three/GLTFLoader.js';
 import {OrbitControls} from '../three/OrbitControls.js';
 import {GUI} from '../three/dat.gui.module.js';
-import {RGBELoader} from '../three/RGBELoader.js'
+import {RGBELoader} from '../three/RGBELoader.js';
+
 let camera, scene, renderer, controls;
 
 let ambientLight, dirLight;
 
 let plane, grid;
 
-let object, mixer, clock, actions;
+let object, mixer, clock, action;
+let actions = [];
 
 let check1 = false;
 
-let raycaster, mouse;
+let raycaster, mouse, group;
 
 let params, folder;
-
-let group;
-
-var gui = new GUI();
 
 const urlCube = {
     cube1: '../../data/panorama/cube/cube1/',
@@ -40,7 +38,21 @@ var urlHdr = {
     hdr3: '../../data/hdr/hdr3.hdr',
     hdr4: '../../data/hdr/hdr4.hdr',
 };
+
+var urlTexture = {
+    texture1: '../data/texture/texture1',
+    texture2: '../data/texture/texture2',
+    texture3: '../data/texture/texture3',
+
+    format1: '.jpg',
+    format2: '.png',
+}
+
+var path = window.location.pathname;
+const urlParams = new URLSearchParams(window.location.search);
+const filePath = urlParams.get('id');
    
+var gui = new GUI();
 
 function init() {
     _initGp();
@@ -73,7 +85,7 @@ function _initGp() {
 }
 
 function _light() {
-    ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
+    ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
     scene.add(ambientLight)
 
     dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
@@ -112,11 +124,13 @@ function _plane() {
     plane.rotation.x = - Math.PI / 2;
     plane.position.y = - 0.4;
     plane.receiveShadow = true;
+    plane.visible = false;
     scene.add(plane);
 
     grid = new THREE.GridHelper( 3,3, 0x000000, 0x000000 );
     grid.material.opacity = 0.2;
     grid.material.transparent = true;
+    grid.visible = false;
     scene.add( grid );
 }
 function centralize (object) {
@@ -135,10 +149,10 @@ function centralize (object) {
     object.position.sub(_centerbox);
 }
 
-function _loadTexture() {
+function loadTexture(url, format) {
     var textureLoader = new THREE.TextureLoader();
-    var text = textureLoader.load('../../data/gltf/12.jpg');
-    // map.encoding = THREE.sRGBEncoding;
+    var text = textureLoader.load(url + format);
+    text.encoding = THREE.sRGBEncoding;
     text.flipY = false;
 
     return text;
@@ -146,7 +160,7 @@ function _loadTexture() {
 
 function _loadGLTF() {
     var loader = new GLTFLoader();
-    loader.load('../../data/gltf/test1.1.glb', (gltf) => {
+    loader.load('../../data/gltf/CesiumMan/CesiumMan.gltf', (gltf) => {
         object = gltf.scene;
         centralize(object);
 
@@ -154,7 +168,6 @@ function _loadGLTF() {
             if(o.isMesh) {
                 _guiMaterial(o);
 
-                o.material.map = _loadTexture();
                 o.castShadow = true;
                 o.receiveShadow = true;
             }
@@ -166,27 +179,44 @@ function _loadGLTF() {
         _guiPanorama(); 
         
         mixer = new THREE.AnimationMixer( object );
-        actions = mixer.clipAction( gltf.animations[ 0 ] );
-        actions.play();
+
+        for (let i = 0; i < gltf.animations.length; i++) {
+            action = mixer.clipAction( gltf.animations[i] );
+            actions.push(action)
+        }
+
+        activateAllActions()
 
         scene.add(object);
         }
-        // , 
-        // onProgress(), 
-        // onError()
     );
 }
 
 function _guiMaterial(obj) {
     params = {
         color : '#ffffff',
+        texture: 'null', 
     }
 
-    folder = gui.addFolder('Material color');
+    folder = gui.addFolder('Material');
 
     folder.addColor(params, 'color').onChange( function(colorValue) {
     obj.material.color.set(colorValue);
     });
+
+    folder.add(params, 'texture', ['texture1', 'texture2', 'texture3']).onChange((value) => {
+        switch(value) {
+            case 'texture1':
+                obj.material.map = loadTexture(urlTexture.texture1, urlTexture.format1);
+                break;
+            case 'texture2':
+                obj.material.map = loadTexture(urlTexture.texture2, urlTexture.format1);
+                break;
+            case 'texture3':
+                obj.material.map = loadTexture(urlTexture.texture3, urlTexture.format1);
+                break;
+        }
+    })
 }
 
 function _guiAnimation() {
@@ -202,29 +232,29 @@ function _guiAnimation() {
 
 function _guiPlane() {
     params = {
-        'Plane': 'Enable Plane',
-        'Grid': 'Enable Grid',
+        'Plane': 'Disable plane',
+        'Grid': 'Disable grid',
     }
 
     folder = gui.addFolder('Plane');
 
-    folder.add(params, 'Plane', ['Enable Plane', 'Disable plane']).onChange(updatePlane);
-    folder.add(params, 'Grid', ['Enable Grid', 'Disable Grid']).onChange(updatePlane)
+    folder.add(params, 'Plane', ['Enable plane', 'Disable plane']).onChange(updatePlane);
+    folder.add(params, 'Grid', ['Enable grid', 'Disable grid']).onChange(updatePlane);
 }
 
 function updatePlane(value) {
     switch(value) {
-        case 'Enable Plane':
+        case 'Enable plane':
             enablePlane();
             break;
         case 'Disable plane':
             disablePlane()
             break;
 
-        case 'Enable Grid':
+        case 'Enable grid':
             enableGrid();
             break;
-        case 'Disable Grid':
+        case 'Disable grid':
             disableGrid();
             break;
     }
@@ -236,7 +266,8 @@ function _guiShadow() {
         lightY: - 1,
         lightZ: - 1,
         color: '#ffffff',
-        intensity: dirLight.intensity,
+        intensity_d: dirLight.intensity,
+        intensity_a: ambientLight.intensity,
         Directional_light_Radius: 4,
     };
 
@@ -267,8 +298,13 @@ function _guiShadow() {
 
     folder = gui.addFolder('Light color');
 
-    folder.add(params, 'intensity', -0.5, 2).name('intensity').onChange((value) => {
+    folder.add(params, 'intensity_d', -0.5, 2).name('intensity_d').onChange((value) => {
         dirLight.intensity = value
+
+    })
+    
+    folder.add(params, 'intensity_a', -0.5, 2).name('intensity_a').onChange((value) => {
+        ambientLight.intensity = value
 
     })
 
@@ -338,7 +374,6 @@ function environment(url) {
         
         var hdrEqiTarget = pmremGenerator.fromEquirectangular(hdrTextures).texture;
         
-        // this.scene.background = new THREE.Color('000000')
         scene.background = hdrEqiTarget
         scene.environment = hdrEqiTarget
         
@@ -365,28 +400,36 @@ function disableGrid() {
 }
 
 function pauseContinue() {
-
     if (check1) {
         check1 = false;
-        actions.enabled = true;
         unPauseAllActions();
-    }
-    else {
-        check1 = true;
-        pauseAllActions();
+    } else {
+        if (actions[0].paused) {
+            unPauseAllActions();
+        } else {
+            check1 = true
+            pauseAllActions();
+        }
     }
 }
 
 function pauseAllActions() {
-
-    actions.paused = true;
-
+    actions.forEach((act) => {
+        act.paused = true;
+    })
 }
 
 function unPauseAllActions() {
-
-    actions.paused = false;
+    actions.forEach((act) => {
+        act.paused = false;
+    })
    
+}
+
+function activateAllActions() {
+    for(let i = 0; i < actions.length; i++) {
+        actions[i].play();
+    }    
 }
 
 function panoramaCube(url, format) {
