@@ -52,7 +52,7 @@
                             <a class="nav-link " href="listFile.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="/SEO4-Nhom14.2/Index.html" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
+                            <a class="nav-link " href="/SEO4-Nhom14.2/Index.html?url=CesiumMan&file=CesiumMan&format=.gltf" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
                         </li>
 
                         <li class="nav-item">
@@ -79,7 +79,7 @@
 	<div id ="noidung" style="width: 70%; 
                 height: 300px;
                 border: 2px solid #100f0f00;">
-		<form role="form" action="add.php" method = "post" enctype="multipart/form-data" >
+		<form role="form" action="/SEO4-Nhom14.2/add.php" method = "post" enctype="multipart/form-data" >
 			
 			
             <strong><u>Glb</u> :</strong>

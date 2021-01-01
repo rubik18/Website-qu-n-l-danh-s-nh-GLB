@@ -20,15 +20,15 @@
                 alert("Bạn chưa nhập đầy đủ thông tin");
             }
             else{
-                if(x1=="admin1" && x2=="0000"){
+                if(x1=="admin" && x2=="0000"){
                     window.location = "web.php";
                 }
 
-                if(x1=="admin2" && x2=="0000"){
+                if(x1=="admin1" && x2=="1111"){
                     window.location="web.php";
                 }
 
-                if(x1=="admin3" && x2=="0000"){
+                if(x1=="admin2" && x2=="2222"){
                     window.location="web.php";
                 }
             }

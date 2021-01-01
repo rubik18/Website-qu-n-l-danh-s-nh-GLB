@@ -39,7 +39,7 @@
                         <a class="nav-link " href="listFile.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="/SEO4-Nhom14.2/Index.html" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
+                        <a class="nav-link " href="/SEO4-Nhom14.2/Index.html?url=CesiumMan&file=CesiumMan&format=.gltf" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
                     </li>
 
                     <li class="nav-item">
@@ -89,7 +89,23 @@ if (!$result) {
                         ?>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?php echo '/SEO4-Nhom14.2/Index.html?url=';
+                                    if(substr($row['name'], -4)=='.glb' or substr($row['name'],-4)=='.GLB' ) {
+                                        echo 'glb';
+                                        echo'&file=' ; 
+                                        echo substr($row['name'],0, -4);
+                                        echo '&format=';
+                                        echo substr($row['name'], -4);
+                                    }else{
+
+                                        echo substr($row['name'],0, -5); 
+                                        echo'&file=' ; 
+                                        echo substr($row['name'],0, -5);
+                                        echo '&format=';
+                                        echo substr($row['name'], -5);
+                                    }
+                                    
+                 ?>" class="nav-link">
                         <i class="fas fa-cog nav-icon" id="navi"></i>
                         <p id="nav"><?php echo $row['name']; ?></p>
                     </a>
@@ -114,8 +130,24 @@ if (!$result) {
                                     {
                                     $id = $user_infoi['id'];?>
                 <!-- January 2020 -->
-                <a href="" target="_blank" rel="noopener"><img src="<?php if ($user_infoi['thumbnaillmageUri']==''){
-                    echo "/SEO4-Nhom14.2/webserver/upload/three_js.png"; }else
+<!--                                        CesiumMan&file=CesiumMan&format=.gltf-->
+                <a href="<?php echo '/SEO4-Nhom14.2/Index.html?url=';
+                                    if(substr($user_infoi['name'], -4)=='.glb' or substr($user_infoi['name'],-4)=='.GLB') {
+                                        echo 'glb';
+                                        echo'&file=' ; 
+                                        echo substr($user_infoi['name'],0, -4);
+                                        echo '&format=';
+                                        echo substr($user_infoi['name'], -4);
+                                    }else{
+                                        echo substr($user_infoi['name'],0, -5); 
+                                        echo'&file=' ; 
+                                        echo substr($user_infoi['name'],0, -5);
+                                        echo '&format=';
+                                        echo substr($user_infoi['name'], -5);
+                                    }
+                                    
+                 ?>" target="_blank" rel="noopener"><img src="<?php if ($user_infoi['thumbnaillmageUri']==''){
+                    echo "/SEO4-Nhom14.2/upload/img/three_js.png"; }else
                     echo $user_infoi['thumbnaillmageUri'];?>"style="width:100%;height:150px;" loading="lazy"></a>
                 <?php
                                     }

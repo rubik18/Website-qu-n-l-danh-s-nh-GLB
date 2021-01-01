@@ -38,7 +38,7 @@
                             <a class="nav-link " href="listFile.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="/SEO4-Nhom14.2/Index.html" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
+                            <a class="nav-link " href="/SEO4-Nhom14.2/Index.html?url=CesiumMan&file=CesiumMan&format=.gltf" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
                         </li>
 
                         <li class="nav-item">
@@ -65,15 +65,15 @@
     	    <table border="2" id ="table">
  		<thead>
  			<th>Id</th>
- 			<th>Scale</th>
- 			<th>Animations</th>
+ 			<!-- <th>Scale</th>
+ 			<th>Animations</th> -->
  			<th>Name</th>
  			<th>Glb</th>
  			<th>image</th>
- 			<th>category</th>
+ 			<!-- <th>category</th>
  			<th>width</th>
  			<th>height</th>
- 			<th>depth</th>
+ 			<th>depth</th> -->
  			<th></th>
  		</thead>
  		<tbody>
@@ -92,16 +92,16 @@
             	?>
 			<tr>
 				<td><?php echo $id; ?></td>
-				<td><?php echo $user_info['scale']; ?></td>
-				<td><?php echo $user_info['animations']; ?></td>
+				<!-- <td><?php echo $user_info['scale']; ?></td>
+				<td><?php echo $user_info['animations']; ?></td> -->
 				<td><?php echo$user_info['name']; ?></td>
 				<td><?php echo $user_info['glbUri']; ?></td>
 				
 				<td><img src="<?php echo $user_info['thumbnaillmageUri']; ?>" style="width: 50px; height: 50px"></td>
-				<td><?php echo$user_info['category']; ?></td>
+				<!-- <td><?php echo$user_info['category']; ?></td>
 				<td><?php echo$user_info['width']; ?></td>
 				<td><?php echo$user_info['height']; ?></td>
-				<td><?php echo$user_info['depth']; ?></td>
+				<td><?php echo$user_info['depth']; ?></td> -->
 				<td><a href='delete.php?id=<?php echo $id;?>' id = 'pink'>Delete</a></td>
 			</tr>
 			<?php 
