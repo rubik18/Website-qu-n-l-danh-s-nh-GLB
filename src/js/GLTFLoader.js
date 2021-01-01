@@ -167,18 +167,18 @@ function loadTexture(url, format) {
 
 function _loadGLTF() {
     var loader = new GLTFLoader();
-    // CesiumMan/CesiumMan.gltf
 
-    loader.load('../../data/gltf/CesiumMan/CesiumMan.gltf', (gltf) => {
+    loader.load('../../data/gltf/glb/test1.1.glb', (gltf) => {
         object = gltf.scene;
         centralize(object);
 
-        object.traverse((o) => {
-            if(o.isMesh) {
-                _guiMaterial(o);
+        object.traverse((obj) => {
+            if(obj.isMesh) {
 
-                o.castShadow = true;
-                o.receiveShadow = true;
+                _guiMaterial(obj);
+               
+                obj.castShadow = true;
+                obj.receiveShadow = true;
             }
         })
 
@@ -206,11 +206,11 @@ function _guiMaterial(obj) {
         color : '#ffffff',
         texture: 'null', 
     }
-
-    folder = gui.addFolder('Material');
+    
+    folder = gui.addFolder('Material ' + obj.name);
 
     folder.addColor(params, 'color').onChange( function(colorValue) {
-    obj.material.color.set(colorValue);
+        obj.material.color.set(colorValue);
     });
 
     folder.add(params, 'texture', ['texture1', 'texture2', 'texture3']).onChange((value) => {
