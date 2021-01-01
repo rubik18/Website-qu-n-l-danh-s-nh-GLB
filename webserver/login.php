@@ -38,7 +38,7 @@
     <title>Log in</title>
 </head>
 
-<body background="/SEO4-Nhom14.2/webserver/upload/img.jpg">
+<body id="boodyy">
 <div id="main">
     <div class="col-md-6" >
 

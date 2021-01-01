@@ -10,7 +10,7 @@
     color: #d6c6c6!important;
 }
 .bg-li {
-    background-color: #352384!important;
+    background-color: #066598!important;
 }
 
 a.navbar-brand {
@@ -33,7 +33,7 @@ img{
 }
 #signin{
 
-    background-color: lightblue;
+    /*background-color: lightblue;*/
     padding: 20px 15px;
     text-align: center;
     font-family: unset;
@@ -43,7 +43,7 @@ img{
 
 }
 #Input{
-    background-color: #81cce6;
+    /*background-color: #81cce6;*/
     padding-bottom: 15px;
     padding-top: 15px;
 }
@@ -53,10 +53,25 @@ input{
     padding: 5px 5px;
 
 }
+#boodyy{
+    background:url(/SEO4-Nhom14.2/webserver/upload/bg.jpeg);
+    /*background-position:  left bottom, bottom right ;*/
+    background-size: cover;
+    /*background-repeat: no-repeat,no-repeat;*/
+    /*background-size: 500px,  auto;*/
+    /*background-clip: border-box,border-box;*/
+}
 #khung{
+
+    background: url(/SEO4-Nhom14.2/webserver/upload/interland.png),url(/SEO4-Nhom14.2/webserver/upload/oatthegoat.png);
+
+    background-position: right bottom,top left;
+    /*background-size: 100px,  600px;*/
+    /*background-size: cover;*/
+    background-repeat: no-repeat,repeat;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #81cce6;
+    /*background-color: #81cce6;*/
     text-align: right;
 }
 button{
@@ -72,6 +87,9 @@ button{
 #bg-col{
     background-color: #c8d2dc;
 
+}
+#bg-bl{
+    padding: 0;
 }
 #navie {
     color: #9e3807;

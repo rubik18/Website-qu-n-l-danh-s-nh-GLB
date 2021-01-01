@@ -39,14 +39,14 @@
                         <a class="nav-link " href="listFile.php" tabindex="-1" aria-disabled="true">List file GLB  &ensp;|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="../Index.html" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
+                        <a class="nav-link " href="/SEO4-Nhom14.2/Index.html" tabindex="-1" aria-disabled="true">Show view GLB  &ensp;&ensp;|</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link pd-0 " href="login.php" tabindex="-1" aria-disabled="true">Logout  &ensp;|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="javascript:void(0);" onclick="myFunction()" tabindex="-1" aria-disabled="true">Help</a>
+                        <a class="nav-link " href="javascript:void(0);" onclick="myFunction()" tabindex="-1" aria-disabled="true">About</a>
                     </li>
                 </ul>
                 <!-- -->

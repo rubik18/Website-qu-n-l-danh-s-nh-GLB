@@ -18,6 +18,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e347f287-e380-47c0-9ea3-a69afdded9c2" name="Default Changelist" comment="chỉnh sửa giao diện web, upload file,liên kết các trang">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/css/styleweb.css" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/css/styleweb.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/form_upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/form_upload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/listFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/listFile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/upload/3D Viewer 2020-12-08 5_20_55 PM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/upload/E__SE_SEO4-Nhom14.2_Three.html (SEO4-Nhom14.2) - Sublime Text (UNREGISTERED) 2020-10-14 5_42_32 PM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/upload/img.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/upload/img/Parrot.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/upload/instagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webserver/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/webserver/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +98,9 @@
       <workItem from="1607418885019" duration="13396000" />
       <workItem from="1608365551081" duration="11797000" />
       <workItem from="1609079765736" duration="281000" />
+      <workItem from="1609425947300" duration="1803000" />
+      <workItem from="1609427792704" duration="1836000" />
+      <workItem from="1609429670694" duration="4597000" />
     </task>
     <servers />
   </component>
