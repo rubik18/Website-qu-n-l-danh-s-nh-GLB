@@ -275,9 +275,13 @@ function _loadGLTF() {
             hideProgressBar();
 
         },
+
         // called while loading is progressing
+
         onProgress,
+
         // called when loading has errors
+        
         onError,
     );
 
