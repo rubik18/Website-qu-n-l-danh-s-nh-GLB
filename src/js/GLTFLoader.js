@@ -91,6 +91,13 @@ function _light() {
     dirLight = new THREE.DirectionalLight( '#ffffff', 1.5 );
     dirLight.castShadow = true;
     dirLight.shadow.radius = 4;
+    dirLight.shadow.camera.top = 2;
+    dirLight.shadow.camera.bottom = - 2;
+    dirLight.shadow.camera.left = - 2;
+    dirLight.shadow.camera.right = 2;
+    dirLight.shadow.camera.near = 0.1;
+    dirLight.shadow.camera.far = 40; 
+    // _guiShadow();
     scene.add(dirLight);
 
 }
@@ -122,7 +129,7 @@ function _plane() {
     const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
     plane = new THREE.Mesh(planeGeo, planeMat);
     plane.rotation.x = - Math.PI / 2;
-    plane.position.y = - 0.4;
+    plane.position.y = - 0.5;
     plane.receiveShadow = true;
     plane.visible = false;
     scene.add(plane);
@@ -160,6 +167,8 @@ function loadTexture(url, format) {
 
 function _loadGLTF() {
     var loader = new GLTFLoader();
+    // CesiumMan/CesiumMan.gltf
+
     loader.load('../../data/gltf/CesiumMan/CesiumMan.gltf', (gltf) => {
         object = gltf.scene;
         centralize(object);
@@ -174,7 +183,7 @@ function _loadGLTF() {
         })
 
         _guiPlane();
-        _guiShadow();
+        _guiLight();
         _guiAnimation();
         _guiPanorama(); 
         
@@ -232,14 +241,48 @@ function _guiAnimation() {
 
 function _guiPlane() {
     params = {
-        'Plane': 'Disable plane',
-        'Grid': 'Disable grid',
+        Plane: 'Disable plane',
+        Grid: 'Disable grid',
+
+        planex: -1,
+        planey: -1,
+        planez: -1,
+
+        gridx: -1,
+        gridy: -1,
+        gridz: -1,
     }
 
     folder = gui.addFolder('Plane');
 
     folder.add(params, 'Plane', ['Enable plane', 'Disable plane']).onChange(updatePlane);
     folder.add(params, 'Grid', ['Enable grid', 'Disable grid']).onChange(updatePlane);
+
+    folder = gui.addFolder('Plane direction'); 
+
+    folder.add(params, 'planex', -1, 1).name('plane direction x').onChange( (value) => {
+        plane.position.x = value;
+    } );
+    
+    folder.add(params, 'planey', -1, 1).name('plane direction y').onChange( (value) => {
+        plane.position.y = value;
+    } );
+
+    folder.add(params, 'planez', -1, 1).name('plane direction z').onChange( (value) => {
+        plane.position.z = value;
+    } );
+
+    folder.add(params, 'gridx', -1, 1).name('grid direction x').onChange( (value) => {
+        grid.position.x = value;
+    } );
+
+    folder.add(params, 'gridy', -1, 1).name('grid direction y').onChange( (value) => {
+        grid.position.y = value;
+    } );
+
+    folder.add(params, 'gridz', -1, 1).name('grid direction z').onChange( (value) => {
+        grid.position.z = value;
+    } );    
 }
 
 function updatePlane(value) {
@@ -260,23 +303,36 @@ function updatePlane(value) {
     }
 }
 
-function _guiShadow() {
+function _guiLight() {
+
     params = {
         lightX: - 1,
         lightY: - 1,
         lightZ: - 1,
+
         color: '#ffffff',
+
         intensity_d: dirLight.intensity,
         intensity_a: ambientLight.intensity,
-        Directional_light_Radius: 4,
-    };
+    }
+
+    folder = gui.addFolder('Light color');
+
+    folder.add(params, 'intensity_d', -0.5, 2).name('intensity_d').onChange((value) => {
+        dirLight.intensity = value
+
+    })
+    
+    folder.add(params, 'intensity_a', -0.5, 2).name('intensity_a').onChange((value) => {
+        ambientLight.intensity = value
+
+    })
+
+    folder.addColor( params, 'color', -1, 1 ).name( 'Light color' ).onChange((value) => {
+        dirLight.color.set(value)
+    })
 
     folder = gui.addFolder('Light direction');
-
-    // folder.add( params, 'Directional_light_Radius', 2, 8 ).name('Directional light Radius').onChange(( value ) => {
-    //     dirLight.shadow.radius = value;
-    //     console.log(dirLight.shadow.radius = value)
-    // })
     
     folder.add( params, 'lightX', - 1, 1 ).name( 'light direction x' ).onChange( function ( value ) {
 
@@ -295,22 +351,51 @@ function _guiShadow() {
         dirLight.position.z = value;
 
     } );
+}
 
-    folder = gui.addFolder('Light color');
+function _guiShadow() {
+    params = {  
+        radius : 4,      
+        shadowTop: 2,
+        shadowBottom: -2,
+        shadowLeft: -2,
+        shadowRight: 2,
+        shadowFar: 40,
+        shadowNear: 0.1,
+    };
 
-    folder.add(params, 'intensity_d', -0.5, 2).name('intensity_d').onChange((value) => {
-        dirLight.intensity = value
+    folder = gui.addFolder('Shadow direction');
 
+    folder.add(params, 'radius', 2, 8).onChange((value) => {
+        dirLight.shadow.radius = value;
     })
     
-    folder.add(params, 'intensity_a', -0.5, 2).name('intensity_a').onChange((value) => {
-        ambientLight.intensity = value
-
+    folder.add(params, 'shadowTop', -10, 10).onChange((value) => {
+        dirLight.shadow.camera.top = value;
     })
 
-    folder.addColor( params, 'color', -1, 1 ).name( 'Light color' ).onChange((value) => {
-        dirLight.color.set(value)
+    folder.add(params, 'shadowBottom', -10, 10).onChange((value) => {
+        dirLight.shadow.camera.bottom  = value;
     })
+
+    folder.add(params, 'shadowLeft', -10, 10).onChange((value) => {
+        dirLight.shadow.camera.left  = value;
+    })
+
+    folder.add(params, 'shadowRight', -10, 10).onChange((value) => {
+        dirLight.shadow.camera.right  = value;
+    })
+
+    folder.add(params, 'shadowFar', 10, 100).onChange((value) => {
+    console.log(dirLight.shadow.camera.far)
+    dirLight.shadow.camera.far = value;
+    })
+
+    folder.add(params, 'shadowNear', -1, 1).onChange((value) => {
+        dirLight.shadow.camera.near = value;
+    })
+
+    console.log(dirLight.shadow.camera.far)
 }
 
 function _guiPanorama() {
