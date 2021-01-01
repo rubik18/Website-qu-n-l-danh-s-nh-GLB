@@ -26,29 +26,29 @@
     * [*Thanh hiển thị list gồm tên các file GLB*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/thanhlist.png): Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
 
     **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
-    * *Chức năng Material*:
+    * **Chức năng Material**:
     1. *Chức năng chọn màu(color)* giúp người dùng chỉnh màu theo hệ màu hexa.
     2. *Chức năng thay đổi textture material*
-    * *Chức năng plane*:
+    * **Chức năng plane**:
     1. Chức năng chỉnh: *tạo bóng (enable plane)* và *tắt bóng(disable plane)* 
     2. Chức năng chỉnh: *tạo lưới(enable grib)* và *tắt lưới(disable grib)*
-    * *Chức năng plane direction*:Thay đổi vị trí của plane
+    * **Chức năng plane direction**:Thay đổi vị trí của plane
     1. *Plane direction x*
     2. *Plane direction y*
     3. *Plane direction z*
     4. *Grib direction x*
     5. *Grib direction y*
     6. *Grib derection z*
-    * *Chức năng light color*:
+    * **Chức năng light color**:
     1. Chức năng  chỉnh (*Directional Light*):- ánh sáng vật thể 
     2. Chức năng chỉnh (*Ambient Light*)- ánh sáng môi trường xung quanh 
     3. *Light color*:chọn màu cho lưới 
-    * *Light direction*:
+    * **Light direction**:
     1. *Light direction x*
     2. *Light direction y*
     3. *Light direction z*
-    * Chức năng tạm dừng hoặc tiếp tục để animation hoạt động -*Pausing/Continued*
-    * *Chức năng tạo panorama*:
+    * **Chức năng tạm dừng hoặc tiếp tục để animation hoạt động** -*Pausing/Continued*
+    * **Chức năng tạo panorama**:
     1. *Cube*: chọn ảnh 360 độ 
     2. *Eqiuretangular*
     3. *Envinronment*
