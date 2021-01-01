@@ -13,6 +13,8 @@ let plane, grid;
 let object, mixer, clock, action;
 let actions = [];
 
+let progressBarDiv;
+
 let check1 = false;
 
 let raycaster, mouse, group;
@@ -56,6 +58,9 @@ var gui = new GUI();
 
 function init() {
     _initGp();
+
+    progressBarDivs();
+
     _loadGLTF();
 
     clock = new THREE.Clock();
@@ -63,6 +68,8 @@ function init() {
     window.addEventListener( "mouseup", _mouseup, false );
 
     window.addEventListener( 'resize', onWindowResize, false );
+
+    progressBarDivs();
 }
 
 function _initGp() {
@@ -124,6 +131,7 @@ function _mouseup( event ) {
         pauseContinue();
     }
 }
+
 function _plane() {
     const planeGeo = new THREE.PlaneBufferGeometry(3, 3);
     const planeMat = new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } );
@@ -165,10 +173,66 @@ function loadTexture(url, format) {
     return text;
 }
 
+function progressBarDivs() {
+    progressBarDiv = document.createElement( 'div' );
+    progressBarDiv.innerText = "Loading...";
+    progressBarDiv.style.fontSize = "3em";
+    progressBarDiv.style.color = "#888";
+    progressBarDiv.style.display = "block";
+    progressBarDiv.style.position = "absolute";
+    progressBarDiv.style.top = "50%";
+    progressBarDiv.style.width = "100%";
+    progressBarDiv.style.textAlign = "center";
+}
+
+function showProgressBar() {
+
+    document.body.appendChild( progressBarDiv );
+
+}
+
+function hideProgressBar() {
+
+    document.body.removeChild( progressBarDiv );
+
+}
+
+function updateProgressBar( fraction ) {
+
+    progressBarDiv.innerText = 'Loading... ' + Math.round( fraction * 100, 2 ) + '%';
+
+}
+
+function onProgress( xhr ) {
+
+    console.log()
+
+    if ( xhr.lengthComputable ) {
+
+        updateProgressBar( xhr.loaded / xhr.total );
+
+        console.log( Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' );
+
+    }
+
+}
+
+function onError() {
+
+    const message = "Error loading model";
+    progressBarDiv.innerText = message;
+    console.log( message );
+
+}
+
 function _loadGLTF() {
+
+    // updateProgressBar( 0 );
+    // showProgressBar();
+
     var loader = new GLTFLoader();
 
-    loader.load('../../data/gltf/glb/test1.1.glb', (gltf) => {
+    loader.load('../../data/gltf/CesiumMan/CesiumMan.gltf', (gltf) => {
         object = gltf.scene;
         centralize(object);
 
@@ -197,8 +261,11 @@ function _loadGLTF() {
         activateAllActions()
 
         scene.add(object);
-        }
+    }
+    // , onProgress, onError
     );
+
+    // hideProgressBar();
 }
 
 function _guiMaterial(obj) {
@@ -541,25 +608,7 @@ function panoramaEquirectanggular(url) {
     scene.background = textureEquirec;
 }
 
-function onProgress( xhr ) {
 
-    if ( xhr.lengthComputable ) {
-
-        updateProgressBar( xhr.loaded / xhr.total );
-
-        console.log( Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' );
-
-    }
-
-}
-
-function onError() {
-
-    const message = "Error loading model";
-    progressBarDiv.innerText = message;
-    console.log( message );
-
-}
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
