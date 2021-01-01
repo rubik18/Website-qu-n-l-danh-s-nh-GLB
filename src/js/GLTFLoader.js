@@ -58,20 +58,20 @@ const filePathFormat = urlParams.get('format');
 
 var gui = new GUI();
 
+init()
+animate();
+
 function init() {
     _initGp();
-
-    progressBarDivs();
-
-    _loadGLTF();
-
-    clock = new THREE.Clock();
 
     window.addEventListener( "mouseup", _mouseup, false );
 
     window.addEventListener( 'resize', onWindowResize, false );
 
     progressBarDivs();
+
+    _loadGLTF();
+
 }
 
 function _initGp() {
@@ -86,11 +86,12 @@ function _initGp() {
     document.body.appendChild( renderer.domElement );
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    
+    clock = new THREE.Clock();
 
     _light();
     _orbitControl();
     _plane();
-    
 }
 
 function _light() {
@@ -106,9 +107,8 @@ function _light() {
     dirLight.shadow.camera.right = 2;
     dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 40; 
-    // _guiShadow();
-    scene.add(dirLight);
 
+    scene.add(dirLight);
 }
 
 function _orbitControl() {
@@ -187,27 +187,58 @@ function progressBarDivs() {
     progressBarDiv.style.textAlign = "center";
 }
 
-function showProgressBar() {
+function _loadGLTF() {
 
-    document.body.appendChild( progressBarDiv );
+    updateProgressBar( 0 );
+    showProgressBar();
 
-}
+    var loader = new GLTFLoader();
 
-function hideProgressBar() {
+    var pathGltf = '../../upload/gltf/' + filePathUrl + '/' + filePathName + filePathFormat;
+    // ../../upload/gltf/glb/test1.1.glb
+    loader.load(pathGltf, 
+        (gltf) => {
+            object = gltf.scene;
+            centralize(object);
 
-    document.body.removeChild( progressBarDiv );
+            object.traverse((obj) => {
+                if(obj.isMesh) {
 
-}
+                    _guiMaterial(obj);
+                
+                    obj.castShadow = true;
+                    obj.receiveShadow = true;
+                }
+            })
 
-function updateProgressBar( fraction ) {
+            _guiPlane();
+            _guiLight();
+            _guiAnimation();
+            _guiPanorama(); 
+            
+            mixer = new THREE.AnimationMixer( object );
 
-    progressBarDiv.innerText = 'Loading... ' + Math.round( fraction * 100, 2 ) + '%';
+            for (let i = 0; i < gltf.animations.length; i++) {
+                action = mixer.clipAction( gltf.animations[i] );
+                actions.push(action)
+            }
+
+            activateAllActions()
+
+            scene.add(object);
+
+            hideProgressBar();
+
+        },
+        // called while loading is progressing
+        onProgress,
+        // called when loading has errors
+        onError,
+    );
 
 }
 
 function onProgress( xhr ) {
-
-    console.log()
 
     if ( xhr.lengthComputable ) {
 
@@ -227,49 +258,22 @@ function onError() {
 
 }
 
-function _loadGLTF() {
+function showProgressBar() {
 
-    // updateProgressBar( 0 );
-    // showProgressBar();
+    document.body.appendChild( progressBarDiv );
 
-    var loader = new GLTFLoader();
+}
 
-    var pathGltf = '../../upload/' + filePathUrl + '/' + filePathName + filePathFormat;
+function hideProgressBar() {
 
-    loader.load(path, (gltf) => {
-        object = gltf.scene;
-        centralize(object);
+    document.body.removeChild( progressBarDiv );
 
-        object.traverse((obj) => {
-            if(obj.isMesh) {
+}
 
-                _guiMaterial(obj);
-               
-                obj.castShadow = true;
-                obj.receiveShadow = true;
-            }
-        })
+function updateProgressBar( fraction ) {
 
-        _guiPlane();
-        _guiLight();
-        _guiAnimation();
-        _guiPanorama(); 
-        
-        mixer = new THREE.AnimationMixer( object );
+    progressBarDiv.innerText = 'Loading... ' + Math.round( fraction * 100, 2 ) + '%';
 
-        for (let i = 0; i < gltf.animations.length; i++) {
-            action = mixer.clipAction( gltf.animations[i] );
-            actions.push(action)
-        }
-
-        activateAllActions()
-
-        scene.add(object);
-    }
-    // , onProgress, onError
-    );
-
-    // hideProgressBar();
 }
 
 function _guiMaterial(obj) {
@@ -638,6 +642,3 @@ function animate() {
     
     render();
 }
-
-init()
-animate();
