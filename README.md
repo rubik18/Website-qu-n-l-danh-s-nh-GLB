@@ -70,8 +70,8 @@
     
 ## Cài đặt
 Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ Websever,ở đây chúng tôi hướng dẫn người dùng sử dụng Xampp:
-    - Trước hết bạn cần tải code từ github: [Website quản lý GLB](https://github.com/phuongvu0909/SEO4-Nhom14.2) dưới dạng file *.zip* hoặc clone code về repo local của máy nếu    bạn có sử dụng *git*.
-    - Sau khi giải nén file: 
+* Trước hết bạn cần tải code từ github: [Website quản lý GLB](https://github.com/phuongvu0909/SEO4-Nhom14.2) dưới dạng file *.zip* hoặc clone code về repo local của máy nếu    bạn có sử dụng *git*.
+* Sau khi giải nén file: 
     1. Import CSDL vào SQL: tạo một CSDL có tên *model3d*(cùng tên với tên dữ liệu sẽ import vào)
     sau đó thực hiện import vào CSDL đó.
     2. Đưa các file còn lại vào thư mục htdoc trong Xampp.
@@ -83,8 +83,8 @@ Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ 
     - Dùng thư viện **Three.js** của **JavaScript** để tạo và hiển thị hoạt hình đồ họa 3D
 2. **HTML,CSS** và **PHP**
     - Thiết kế giao diện website bằng **HTML và CSS**. Sau đó sử dụng **PHP** kết nối dữ liệu vào cơ sở dữ liệu.
-3. Công nghệ **JavaSwift*, **PHP**
-4. Công cụ : **IDE Visual Studio Code**,**Git**, **PHP Storm**,**Xampp**
+3. Công nghệ:  **JavaScript**, **PHP**
+4. Công cụ: **IDE Visual Studio Code**, **Git**, **PHP Storm**, **Xampp**, **Blender**
 
 ## Tác giả
 
