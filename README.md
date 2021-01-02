@@ -28,7 +28,6 @@
 
     **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
     ![alt text](https://media.giphy.com/media/spirWBgjPfer0tR8pI/giphy.gif)
-    ![alt text](https://media.giphy.com/media/mYYbvPWlxR556HMIZO/giphy.gif)
     ![alt text](https://media.giphy.com/media/aoe23yAYoFO3uYGnwH/giphy.gif)
     ![alt text](https://media.giphy.com/media/WJdSwDtkfX9rUtX9YZ/giphy.gif)
     ![alt text](https://media.giphy.com/media/5jQJUnN4yiS4GWk1qa/giphy.gif)
@@ -54,10 +53,10 @@
   
     * **Chức năng Playing/Pausing animation**
    
-    * **Chức năng tạo panorama**:
-     * *Cube*
-     * *Eqiuretangular*
-     * *Envinronment hdr*
+    * **Chức năng tạo panorama**:*Cubemap*, *Eqiuretangular*, *Envinronment hdr*
+    
+    
+    
     
     * **Chức năng progressing: hiển thị % load model**
     
