@@ -1,8 +1,8 @@
-# ``` Website quản lý danh sánh GLB ```
+# 🖥``` Website quản lý danh sánh GLB ```
 ------------
-### ![🖥 SEO4-Nhom14.2](https://github.com/phuongvu0909/SEO4-Nhom14.2)
+### [⚡ SEO4-Nhom14.2](https://github.com/phuongvu0909/SEO4-Nhom14.2)
 
-## Giới thiệu
+## 🧾 Giới thiệu
 
 1. **Khái quát chung về website**
 
@@ -67,7 +67,7 @@
 
 
     
-## Cài đặt
+## ⚙️Cài đặt
 Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ Websever,ở đây chúng tôi hướng dẫn người dùng sử dụng Xampp:
 * Trước hết bạn cần tải code từ github: [Website quản lý GLB](https://github.com/phuongvu0909/SEO4-Nhom14.2) dưới dạng file *.zip* hoặc clone code về repo local của máy nếu    bạn có sử dụng *git*.
 * Sau khi giải nén file: 
@@ -76,7 +76,7 @@ Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ 
     2. Đưa các file còn lại vào thư mục htdoc trong Xampp.
     3. Truy cập 1 công cụ tìm kiếm bất kỳ có kết nối intenet và truy cập vào Website bằng đường dẫn: **http://localhost:8080/SEO4-Nhom14.2/webserver/web.php**
 
-## Công nghệ - Công cụ - Thư viện
+## 💡 Công nghệ - Công cụ - Thư viện
 
 1. Thư viện **Three.js** 
     - Dùng thư viện **Three.js** của **JavaScript** để tạo và hiển thị hoạt hình đồ họa 3D
@@ -85,14 +85,14 @@ Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ 
 3. Công nghệ:  **JavaScript**, **PHP**
 4. Công cụ: **IDE Visual Studio Code**, **Git**, **PHP Storm**, **Xampp**, **Blender**
 
-## Tác giả
+## 😀Tác giả 
 
-1. [Hoàng Thị Mai](https://github.com/kaioz11)
-2. [Vũ Thị Phương](https://github.com/phuongvu0909)
-3. [Đinh Thị Thắm](https://github.com/rubik18)
-4. [Trần Thị Thúy Nga](https://github.com/thuynga2705)
+1. 😀[Hoàng Thị Mai](https://github.com/kaioz11)
+2. 😀[Vũ Thị Phương](https://github.com/phuongvu0909)
+3. 😀[Đinh Thị Thắm](https://github.com/rubik18)
+4. 😀[Trần Thị Thúy Nga](https://github.com/thuynga2705)
 
-## Tài liệu tham khảo
+## 📖 Tài liệu tham khảo
 - Thư viện:[Threejs](https://threejs.org)
 - Tài liệu file GLTF:[glTF](https://github.com/KhronosGroup/glTF?fbclid=IwAR2JJNLGO-2ZXJbtTD5JORzMR6kjPpqRlBsxHDL3nQbXkbvBcYRC6k7raMY)
 - Thư viện cung cấp file 3D:[glTF-Sample-Models](https://github.com/KhronosGroup/glTF-Sample-Models?fbclid=IwAR3hIH_-ES0hJpvrX_8A_sfI6VoF9hOwkHsCfKze5TtBeqtH-kwbZ6IFTWk)
