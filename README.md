@@ -55,9 +55,9 @@
     * **Chức năng Playing/Pausing animation**
    
     * **Chức năng tạo panorama**:
-    1. *Cube*
-    2. *Eqiuretangular*
-    3. *Envinronment hdr *
+     * *Cube*
+     * *Eqiuretangular*
+     * *Envinronment hdr*
     
     * **Chức năng progressing: hiển thị % load model**
     
