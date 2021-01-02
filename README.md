@@ -1,7 +1,6 @@
 # ``` Website quản lý danh sánh GLB ```
 ------------
-### SEO4-Nhom14.2
-[![git]](https://github.com/phuongvu0909/SEO4-Nhom14.2)
+### ![SEO4-Nhom14.2](https://github.com/phuongvu0909/SEO4-Nhom14.2)
 
 ## Giới thiệu
 
