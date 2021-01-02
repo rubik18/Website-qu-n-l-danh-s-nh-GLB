@@ -1,7 +1,7 @@
 # ``` Website quản lý danh sánh GLB ```
 ------------
 ### SEO4-Nhom14.2
-[![git](https://badge.fury.io/js/webserver.svg)](https://github.com/phuongvu0909/SEO4-Nhom14.2)
+[![git]](https://github.com/phuongvu0909/SEO4-Nhom14.2)
 
 ## Giới thiệu
 
@@ -26,6 +26,7 @@
     * [*Thanh hiển thị list gồm tên các file GLB*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/thanhlist.png): Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
 
     **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
+     ![alt text](https://giphy.com/gifs/spirWBgjPfer0tR8pI) 
     * **Chức năng Material**:
     1. *Chức năng chọn màu(color)* giúp người dùng chỉnh màu theo hệ màu hexa.
     2. *Chức năng thay đổi textture material*
