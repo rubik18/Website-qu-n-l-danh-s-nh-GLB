@@ -26,16 +26,25 @@
     * [*Thanh hiển thị list gồm tên các file GLB*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/thanhlist.png): Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
 
     **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
-    
+    ![alt text](https://media.giphy.com/media/spirWBgjPfer0tR8pI/giphy.gif)
+    ![alt text](https://media.giphy.com/media/mYYbvPWlxR556HMIZO/giphy.gif)
+    ![alt text](https://media.giphy.com/media/aoe23yAYoFO3uYGnwH/giphy.gif)
+    ![alt text](https://media.giphy.com/media/WJdSwDtkfX9rUtX9YZ/giphy.gif)
+    ![alt text](https://media.giphy.com/media/5jQJUnN4yiS4GWk1qa/giphy.gif)
+    ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
+    ![alt text](https://media.giphy.com/media/z3EiPc4sO947lLhXIA/giphy.gif)
+    ![alt text](https://media.giphy.com/media/z2v8JiJNwdEOkHeJxE/giphy.gif)
+    ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
+
      
     * **Chức năng Material**:
     1. *Chức năng chọn màu(color)* giúp người dùng chỉnh màu theo hệ màu hexa.
     2. *Chức năng thay đổi textture material*
-    ![alt text](https://media.giphy.com/media/spirWBgjPfer0tR8pI/giphy.gif)  
+     
     * **Chức năng plane**:
     1. Chức năng chỉnh: *tạo bóng (enable plane)* và *tắt bóng(disable plane)* 
     2. Chức năng chỉnh: *tạo lưới(enable grib)* và *tắt lưới(disable grib)*
-    ![alt text](https://media.giphy.com/media/mYYbvPWlxR556HMIZO/giphy.gif)
+   
     * **Chức năng plane direction**:Thay đổi vị trí của plane
     1. *Plane direction x*
     2. *Plane direction y*
@@ -43,27 +52,24 @@
     4. *Grib direction x*
     5. *Grib direction y*
     6. *Grib derection z*
-    ![alt text](https://media.giphy.com/media/aoe23yAYoFO3uYGnwH/giphy.gif)
+    
     * **Chức năng light color**:
     1. Chức năng  chỉnh (*Directional Light*):- ánh sáng vật thể 
     2. Chức năng chỉnh (*Ambient Light*)- ánh sáng môi trường xung quanh 
     3. *Light color*:chọn màu cho lưới 
-    ![alt text](https://media.giphy.com/media/WJdSwDtkfX9rUtX9YZ/giphy.gif)
+   
     * **Light direction**:
     1. *Light direction x*
     2. *Light direction y*
     3. *Light direction z*
-    ![alt text](https://media.giphy.com/media/5jQJUnN4yiS4GWk1qa/giphy.gif)
+  
     * **Chức năng tạm dừng hoặc tiếp tục để animation hoạt động** -*Pausing/Continued*
-    ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
+   
     * **Chức năng tạo panorama**:
     1. *Cube*: chọn ảnh 360 độ 
     2. *Eqiuretangular*
     3. *Envinronment*
-    ![alt text](https://media.giphy.com/media/z3EiPc4sO947lLhXIA/giphy.gif)
-    ![alt text](https://media.giphy.com/media/z2v8JiJNwdEOkHeJxE/giphy.gif)
-    ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
-
+    
 
     
 ## Cài đặt
