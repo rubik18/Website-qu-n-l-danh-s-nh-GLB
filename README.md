@@ -29,12 +29,13 @@
     * [*Thanh hiển thị list gồm tên các file GLB*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/thanhlist.png): Bên cạnh chức năng **Show view GLB** thì **thanh hiển thị list file GLB** thiết kế nằm dọc ngay bên trái trang web giúp người dùng có thể dễ dàng quan  sát tổng quát các file GLB hiện mình đang có.
 
     **Chức năng chỉnh sửa các thuộc tính của các file GLB khi xem chi tiết**
+    
+    
     ![alt text](https://media.giphy.com/media/spirWBgjPfer0tR8pI/giphy.gif)
     ![alt text](https://media.giphy.com/media/aoe23yAYoFO3uYGnwH/giphy.gif)
     ![alt text](https://media.giphy.com/media/WJdSwDtkfX9rUtX9YZ/giphy.gif)
     ![alt text](https://media.giphy.com/media/5jQJUnN4yiS4GWk1qa/giphy.gif)
     ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
-    ![alt text](https://media.giphy.com/media/z3EiPc4sO947lLhXIA/giphy.gif)
     ![alt text](https://media.giphy.com/media/z2v8JiJNwdEOkHeJxE/giphy.gif)
 
     * **Chức năng Material**:
@@ -69,8 +70,8 @@
     
 ## Cài đặt
 Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ Websever,ở đây chúng tôi hướng dẫn người dùng sử dụng Xampp:
-    * Trước hết bạn cần tải code từ github: [Website quản lý GLB](https://github.com/phuongvu0909/SEO4-Nhom14.2) dưới dạng file *.zip* hoặc clone code về repo local của máy nếu bạn có sử dụng *git*.
-    * Sau khi giải nén file: 
+    - Trước hết bạn cần tải code từ github: [Website quản lý GLB](https://github.com/phuongvu0909/SEO4-Nhom14.2) dưới dạng file *.zip* hoặc clone code về repo local của máy nếu    bạn có sử dụng *git*.
+    - Sau khi giải nén file: 
     1. Import CSDL vào SQL: tạo một CSDL có tên *model3d*(cùng tên với tên dữ liệu sẽ import vào)
     sau đó thực hiện import vào CSDL đó.
     2. Đưa các file còn lại vào thư mục htdoc trong Xampp.
@@ -82,6 +83,8 @@ Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ 
     - Dùng thư viện **Three.js** của **JavaScript** để tạo và hiển thị hoạt hình đồ họa 3D
 2. **HTML,CSS** và **PHP**
     - Thiết kế giao diện website bằng **HTML và CSS**. Sau đó sử dụng **PHP** kết nối dữ liệu vào cơ sở dữ liệu.
+3. Công nghệ **JavaSwift*, **PHP**
+4. Công cụ : **IDE Visual Studio Code**,**Git**, **PHP Storm**,**Xampp**
 
 ## Tác giả
 
@@ -91,8 +94,8 @@ Trước tiên yêu cầu máy dùng để chạy Website phải có máy chủ 
 4. [Trần Thị Thúy Nga](https://github.com/thuynga2705)
 
 ## Tài liệu tham khảo
-
-- Định nghĩa file: [GLB](https://f4vnn.com/tep-glb-la-gi.html)
-- Thư viện cung cấp file 3D:[Three.js](https://threejs.org/)
+- Thư viện:[Threejs](https://threejs.org)
+- Tài liệu file GLTF:[glTF](https://github.com/KhronosGroup/glTF?fbclid=IwAR2JJNLGO-2ZXJbtTD5JORzMR6kjPpqRlBsxHDL3nQbXkbvBcYRC6k7raMY)
+- Thư viện cung cấp file 3D:[glTF-Sample-Models](https://github.com/KhronosGroup/glTF-Sample-Models?fbclid=IwAR3hIH_-ES0hJpvrX_8A_sfI6VoF9hOwkHsCfKze5TtBeqtH-kwbZ6IFTWk)
 
 
