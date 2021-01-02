@@ -16,7 +16,9 @@
     * Bạn có thể xem chi tiết từng file 3D như :Mã sản phẩm,tên sản phẩm, kích thước, danh sách animation, tốc độ animation...
     * Bạn có thể xóa 1 hay nhiều file.*glb* khi có nhu cầu. -->
     **Các chức năng có trên thanh công cụ**
+    
     ![alt text](https://media.giphy.com/media/dI0LDwHovUHQ4mOc2l/giphy.gif)
+    
     * [*Chức năng đăng nhập, đăng xuất*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/login.png): để có thể bảo mật về tài nguyên của người dùng, chức năng **login** khi người dùng truy cập vào trang web giúp người dùng có thể quản lý đúng file GLB của mình cũng như đảm bảo quyền riêng tư về dữ liệu, ngoài ra chức năng **logout** sẽ đi kèm .
     * [*Chức năng tải file 3d lên website*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/upload.png): Người dùng chọn chức năng **Upload File** ở trên thanh công cụ, sau khi điền đủ các trường và nhấn **chấp nhận** là người dùng đã upload 1 file 3d(glb) thành công.
     * [*Chức năng xem danh sách các file 3d đã upload lên*](https://github.com/phuongvu0909/SEO4-Nhom14.2/blob/readme/Functional%20images/listView.png): Khi kích chuột chọn chức năng **List file GLB** màn hình sẽ hiện lên danh sách các file glb đã được upload lên dưới dạng bảng với các trường thông tin là thông tin của file GLB đó.
@@ -34,29 +36,25 @@
     ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
     ![alt text](https://media.giphy.com/media/z3EiPc4sO947lLhXIA/giphy.gif)
     ![alt text](https://media.giphy.com/media/z2v8JiJNwdEOkHeJxE/giphy.gif)
-    ![alt text](https://media.giphy.com/media/cIh36sLCVBgI64zEZS/giphy.gif)
 
     * **Chức năng Material**:
-    1. *Chức năng chọn màu(color)* giúp người dùng chỉnh màu theo hệ màu hexa.
-    2. *Chức năng thay đổi textture material*
+      1. *Chức năng chọn màu(color)* giúp người dùng chỉnh màu theo hệ màu hexa.
+      2. *Chức năng thay đổi textture material*
      
     * **Chức năng plane**:Tạo mặt phẳng lưới hứng shadow của model 3D
    
     * **Chức năng plane direction**:Thay đổi vị trí của plane và grib
     
     * **Chức năng light color**:
-    * Thay đổi cường độ sáng của *Directional Light* - ánh sáng vật thể và 
-    * Thay đổi cường độ sáng của *Ambient Light* - ánh sáng môi trường xung quanh 
-    * Thay đổi màu ánh sáng *light color*
+      1. Thay đổi cường độ sáng của *Directional Light* - ánh sáng vật thể và 
+      2. Thay đổi cường độ sáng của *Ambient Light* - ánh sáng môi trường xung quanh 
+      3. Thay đổi màu ánh sáng *light color*
    
     * **Light direction**:Thay đổi vị trí của ánh sáng
   
     * **Chức năng Playing/Pausing animation**
    
     * **Chức năng tạo panorama**:*Cubemap*, *Eqiuretangular*, *Envinronment hdr*
-    
-    
-    
     
     * **Chức năng progressing: hiển thị % load model**
     
